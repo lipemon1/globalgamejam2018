@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using XInputDotNetPure;
 
 public class GameLoop : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class GameLoop : MonoBehaviour {
     [SerializeField] private List<Player> _playersControllersList = new List<Player>();
 
     [Header("Prefabs")]
+    [SerializeField] private Material[] _playerMaterials;
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Transform[] _spawnTransforms = new Transform[12];
 
@@ -114,7 +116,8 @@ public class GameLoop : MonoBehaviour {
     private void ForceOnepLayer()
     {
         Global.ResetAllPlayers();
-        Global.Player[0].exist = true;
+        
+        for (int i = 0; i < 4; i++) Global.Player[i].exist = true;
     }
 
     // This function is used to turn all the tanks back on and reset their positions and properties.
@@ -124,8 +127,10 @@ public class GameLoop : MonoBehaviour {
         {
             if (Global.Player[i].exist)
             {
-                Global.Player[i].Instance =  Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation).GetComponent<Player>();
+                Global.Player[i].Instance = Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation).GetComponent<Player>();
                 Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
+                Global.Player[i].Instance.Index = (PlayerIndex) i;
+                Global.Player[i].Instance.GetComponent<Renderer>().material = _playerMaterials[i];
             }
         }
     }
