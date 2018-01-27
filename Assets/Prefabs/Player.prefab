@@ -266,9 +266,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c4834c87afca6458d10672ca649724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canShoot: 0
   _shieldIsOn: 0
   _holdingShot: 0
   _shieldObject: {fileID: 1403517341349306}
+  _bulletPrefab: {fileID: 1900460106413144, guid: 4d171ee76d724ca4ba98167f49a24c17,
+    type: 2}
+  _standardBulletVelocity: 1
+  _bulletDistance: 0
+  _maxForceToShoot: 1
+  _bulletShootForce: 0
+  _forceMultiplier: 0.5
+  _testForceMultiplier: 10
+  _minBulletDistance: 5
+  _maxBulletDistance: 20
   _playerData:
     _energyAmount: 0
 --- !u!114 &114583062597404648
@@ -283,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 0
+  _playerCanControl: 0
   MovSpeed: 10
   RotSlerpSpeed: 12
   DashAnimationCurve:

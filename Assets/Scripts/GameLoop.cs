@@ -1,0 +1,169 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class GameLoop : MonoBehaviour {
+
+    public static GameLoop Instance;
+
+    [Header("General Settings")]
+    [SerializeField] private float _startDelay = 3f;
+    [SerializeField] private float _endDelay = 3f;
+    [SerializeField] private Text _messageText;
+
+    [Header("Players Controllers")]
+    [SerializeField] private List<Player> _playersControllersList = new List<Player>();
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private Transform[] _spawnTransforms = new Transform[12];
+
+    [Header("Other Info")]
+    [HideInInspector]
+    private WaitForSeconds _startWait;
+    [HideInInspector] private WaitForSeconds _endWait;
+    [HideInInspector] private float _timeAlive;
+
+    [Header("Tickets Available")]
+    [SerializeField] private int _currentDeathTickets = 0;
+    [SerializeField] private int _deathTicketsForMatch = 20;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        _startWait = new WaitForSeconds(_startDelay);
+        _endWait = new WaitForSeconds(_endDelay);
+
+        // Once the tanks have been created and the camera is using them as targets, start the game.
+        StartCoroutine(GameLooping());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) & Input.GetKeyDown(KeyCode.R) & Input.GetKeyDown(KeyCode.S) & Input.GetKeyDown(KeyCode.T))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    // This is called from start and will run each phase of the game one after another.
+    private IEnumerator GameLooping()
+    {
+        // Start off by running the 'RoundStarting' coroutine but don't return until it's finished.
+        yield return StartCoroutine(RoundStarting());
+
+        // Once the 'RoundStarting' coroutine is finished, run the 'RoundPlaying' coroutine but don't return until it's finished.
+        yield return StartCoroutine(RoundPlaying());
+
+        // Once execution has returned here, run the 'RoundEnding' coroutine, again don't return until it's finished.
+        yield return StartCoroutine(RoundEnding());
+
+        SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator RoundStarting()
+    {
+        ForceOnepLayer();
+
+        //set the game tickets
+        _currentDeathTickets = _deathTicketsForMatch;
+
+        // As soon as the round starts reset the players and make sure they can't move.
+        ResetAllPlayers();
+        DisablePlayersControl();
+
+        yield return _startWait;
+    }
+
+    private IEnumerator RoundPlaying()
+    {
+        // As soon as the round begins playing let the players control the tanks.
+        EnablePlayersControl();
+
+        // Clear the text from the screen.
+        _messageText.text = string.Empty;
+
+        // While there is not one tank left...
+        while (!GameIsEnded())
+        {
+            // ... return on the next frame.
+            yield return null;
+        }
+    }
+
+    private IEnumerator RoundEnding()
+    {
+        // Stop players from moving.
+        DisablePlayersControl();
+
+        // Get a message based on the scores and whether or not there is a game winner and display it.
+        string message = EndMessage();
+        _messageText.text = message;
+
+        // Wait for the specified length of time until yielding control back to the game loop.
+        yield return _endWait;
+    }
+
+    private void ForceOnepLayer()
+    {
+        Global.ResetAllPlayers();
+        Global.Player[0].exist = true;
+    }
+
+    // This function is used to turn all the tanks back on and reset their positions and properties.
+    private void ResetAllPlayers()
+    {
+        for (int i = 0; i < Global.MaxPlayers; i++)
+        {
+            if (Global.Player[i].exist)
+            {
+                Global.Player[i].Instance =  Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation).GetComponent<Player>();
+                Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
+            }
+        }
+    }
+
+    private void DisablePlayersControl()
+    {
+        for (int i = 0; i < Global.MaxPlayers; i++)
+        {
+            if (Global.Player[i].exist)
+            {
+                Global.Player[i].Instance.DisablePlayerControl();
+            }
+        }
+    }
+
+    private void EnablePlayersControl()
+    {
+        for (int i = 0; i < Global.MaxPlayers; i++)
+        {
+            if (Global.Player[i].exist)
+            {
+                Global.Player[i].Instance.EnablePlayerControl();
+            }
+        }
+    }
+
+    private bool GameIsEnded()
+    {
+        return (_currentDeathTickets == 0);
+    }
+
+    // Returns a string message to display at the end of each round.
+    private string EndMessage()
+    {
+        // By default when a round ends there are no winners so the default end message is a draw.
+        string message = "JOGO ACABOU";
+        
+
+        return message;
+    }
+}

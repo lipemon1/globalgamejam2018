@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 
     public PlayerIndex Index = PlayerIndex.One;
 
+    [Header("Debug")]
+    [SerializeField] private bool _playerCanControl;
+
     [Header("Movimentation Settings")]
     public float MovSpeed = 10;
 
@@ -57,10 +60,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!IsDashing && !IsAiming) HandleMovement(_joyInputController.LeftStick(Index));
-        if (!IsDashing) HandleRotation(_joyInputController.LeftStick(Index));
-        if (!IsAiming) HandleDash();
-        HandleAim();
+        if (_playerCanControl)
+        {
+            if (!IsDashing && !IsAiming) HandleMovement(_joyInputController.LeftStick(Index));
+            if (!IsDashing) HandleRotation(_joyInputController.LeftStick(Index));
+            if (!IsAiming) HandleDash();
+            HandleAim();
+        }
     }
 
     #endregion
@@ -130,5 +136,20 @@ public class Player : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         IsDashing = false;
+    }
+
+    public void EnablePlayerControl()
+    {
+        _playerCanControl = true;
+    }
+
+    public void DisablePlayerControl()
+    {
+        _playerCanControl = false;
+    }
+
+    public void ResetPlayer()
+    {
+
     }
 }
