@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class CollactableHandler : MonoBehaviour {
 
-    [Header("Debug")]
-    [SerializeField] private Collider _itemToCollect;
-    [SerializeField] private CollactableBehaviour _lastItemCollected;
-
     [Header("Energy Tag")]
-    [SerializeField] private string _energyTag;
+    [SerializeField] private string _energyTag = "EnergyBullet";
 
     [Header("EnergyHandler")]
     [HideInInspector] private EnergyHandler _energyHandler;
@@ -31,21 +27,21 @@ public class CollactableHandler : MonoBehaviour {
             CollactableBehaviour bulletCB = other.GetComponent<CollactableBehaviour>();
 
             if (bulletCB.CanBePicked() && _energyHandler.GetPlayerEnergyAmount() < GameLoop.MAX_ENERGY)
-            {
-                _itemToCollect = other;
                 CollectEnergy(bulletCB);
-            }
+            else if (bulletCB.CanBePicked() == false)
+                KillPlayer();
         }
     }
 
     private void CollectEnergy(CollactableBehaviour bulletCB)
     {
         Debug.Log("EnergyCollected");
-
-        _itemToCollect = null;
-        _lastItemCollected = bulletCB;
-
         _energyHandler.RecieveSomeEnergy(bulletCB.GetEnergyAmount());
         Destroy(bulletCB.gameObject);
+    }
+
+    private void KillPlayer()
+    {
+
     }
 }

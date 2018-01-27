@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -46,5 +47,29 @@ public static class Global {
         {
             _player.ResetInfo();
         }
+    }
+
+    public static void StartKillingSomePlayer(GameObject playerObjectInstance)
+    {
+        PlayerInfo playerToKill = GetMyPlayer(playerObjectInstance);
+
+        playerToKill.Instance.DisablePlayerControl();
+        //TO DO Call death animation here
+    }
+
+    public static void RespawnSomePlayer(GameObject playerObjectInstance)
+    {
+        //PlayerInfo playerToKill = GetMyPlayer(playerObjectInstance);
+        //TO DO RESET PLAYER
+    }
+
+    /// <summary>
+    /// Retorna qual jogador dentro da lista de jogadores eu sou
+    /// </summary>
+    /// <param name="playerObjectInstance"></param>
+    /// <returns></returns>
+    public static PlayerInfo GetMyPlayer(GameObject playerObjectInstance)
+    {
+        return Player.Where(player => player.Instance.gameObject == playerObjectInstance).ToList().FirstOrDefault();
     }
 }
