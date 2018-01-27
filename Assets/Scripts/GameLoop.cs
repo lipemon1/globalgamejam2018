@@ -28,6 +28,10 @@ public class GameLoop : MonoBehaviour {
     [HideInInspector] private WaitForSeconds _endWait;
     [HideInInspector] private float _timeAlive;
 
+    [Header("Messages")]
+    [SerializeField] private string _startMessage = "Começando...";
+    [SerializeField] private string _finalMessage = "Terminando...";
+
     [Header("Tickets Available")]
     [SerializeField] private int _currentDeathTickets = 0;
     [SerializeField] private int _deathTicketsForMatch = 20;
@@ -81,6 +85,8 @@ public class GameLoop : MonoBehaviour {
         ResetAllPlayers();
         DisablePlayersControl();
 
+        _messageText.text = _startMessage;
+
         yield return _startWait;
     }
 
@@ -106,8 +112,7 @@ public class GameLoop : MonoBehaviour {
         DisablePlayersControl();
 
         // Get a message based on the scores and whether or not there is a game winner and display it.
-        string message = EndMessage();
-        _messageText.text = message;
+        _messageText.text = _finalMessage;
 
         // Wait for the specified length of time until yielding control back to the game loop.
         yield return _endWait;
