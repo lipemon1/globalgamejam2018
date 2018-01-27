@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using XInputDotNetPure;
 
+[RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
 
     //Input
     private JoystickInputController _joyInputController;
+    private CharacterController _characterController;
 
     #region Unity Calls
 
@@ -56,6 +58,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _joyInputController = JoystickInputController.Instance;
+        _characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
 
     private void HandleMovement(Vector2 stick)
     {
-        transform.Translate(new Vector3(stick.x, 0, stick.y) * MovSpeed * Time.deltaTime, Space.World);
+        _characterController.Move(new Vector3(stick.x, 0, stick.y) * MovSpeed * Time.deltaTime);
     }
 
     private void HandleRotation(Vector2 stick)
