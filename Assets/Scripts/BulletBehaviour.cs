@@ -5,6 +5,10 @@ using System.Linq;
 
 public class BulletBehaviour : MonoBehaviour
 {
+    [Header("Debug")]
+    [SerializeField]
+    private bool _canBePicked;
+
     public AnimationCurve Curve;
     private float _speed;
     private float _distance;
@@ -14,6 +18,12 @@ public class BulletBehaviour : MonoBehaviour
         _distance = distance;
         _speed = speed;
         StartCoroutine(Go(transform.forward, distance));
+        Invoke("MakeItPickable", 4);
+    }
+
+    private void MakeItPickable()
+    {
+        GetComponent<CollactableBehaviour>().SetCanBePicked(true);
     }
 
     private IEnumerator Go(Vector3 direction, float distance)

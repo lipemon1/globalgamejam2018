@@ -23,6 +23,7 @@ public class EnergyHandler : MonoBehaviour {
     [SerializeField] private float _testForceMultiplier = 10f;
 
     [Header("Distances")]
+    [SerializeField] private Transform _shootSpawner;
     [SerializeField] private float _minBulletDistance = 2.5f;
     [SerializeField] private float _maxBulletDistance = 10f;
 
@@ -86,29 +87,37 @@ public class EnergyHandler : MonoBehaviour {
             _bulletShootForce = _maxForceToShoot;
     }
 
+    /// <summary>
+    /// Recebe uma energia que foi coletada
+    /// </summary>
+    /// <param name="amount"></param>
+    public void RecieveSomeEnergy(int amount)
+    {
+        _playerData.SetEnergyAmount(amount);
+    }
+
     public void TryToShoot()
     {
         if (CanShoot())
         {
-            _holdingShot = false;
             float force = _bulletShootForce;
             _bulletShootForce = 0f;
-
-            _playerData.SetEnergyAmount(-1);
-
             Debug.LogWarning("Shoot with force: " + force.ToString("F2"));
 
-            Shoot(_bulletPrefab, force);
+            Shoot(_bulletPrefab, force, _playerData.GetEnergyAmount());
         }
         else
         {
             Debug.LogWarning("You tried to shoot but the shoot system is not ready yet.");
         }
+
+        _holdingShot = false;
     }
 
-    private void Shoot(GameObject bulletPrefab, float holdTime)
+    private void Shoot(GameObject bulletPrefab, float holdTime, int energyAmount)
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        _playerData.SetEnergyAmount(energyAmount);
+        GameObject bullet = Instantiate(bulletPrefab, _shootSpawner.transform.position, transform.rotation);
 
         //bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * force * _standardBulletVelocity);
         _bulletDistance = Mathf.Lerp(_minBulletDistance, _maxBulletDistance, Mathf.InverseLerp(0, _maxForceToShoot, holdTime));
