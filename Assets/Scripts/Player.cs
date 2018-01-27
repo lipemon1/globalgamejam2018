@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
     private void HandleMovement(Vector2 stick)
     {
-        transform.Translate(new Vector3(stick.x, 0, stick.y) * RotSlerpSpeed * Time.deltaTime, Space.World);
+        transform.Translate(new Vector3(stick.x, 0, stick.y) * MovSpeed * Time.deltaTime, Space.World);
     }
 
     private void HandleRotation(Vector2 stick)

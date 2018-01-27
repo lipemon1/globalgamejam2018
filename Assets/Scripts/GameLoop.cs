@@ -10,6 +10,7 @@ public class GameLoop : MonoBehaviour
     public static GameLoop Instance;
 
     public const int MAX_ENERGY = 4;
+    public const int INITIAL_ENERGY = 1;
 
     [Header("General Settings")] [SerializeField] private float _startDelay = 3f;
     [SerializeField] private float _endDelay = 3f;
@@ -19,7 +20,6 @@ public class GameLoop : MonoBehaviour
 
     [Header("Player Config")] [SerializeField] private Material[] _playerMaterials;
     [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] private int _initialEnergy;
     [SerializeField] private Transform[] _spawnTransforms = new Transform[12];
 
     [Header("Other Info")] [HideInInspector] private WaitForSeconds _startWait;
@@ -138,9 +138,14 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].Instance = Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation)
                     .GetComponent<Player>();
                 Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
-                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(_initialEnergy);
+                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(INITIAL_ENERGY);
+                Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
-                Global.Player[i].Instance.GetComponent<Renderer>().material = _playerMaterials[i];
+
+                foreach (var rend in Global.Player[i].Instance.GetComponentsInChildren<Renderer>())
+                {
+                    rend.material = _playerMaterials[i];
+                }
 
                 foreach (var userPlate in NamePlateManager.Instance.UserPlates)
                     if (userPlate.Index == Global.Player[i].Instance.Index)
@@ -186,5 +191,10 @@ public class GameLoop : MonoBehaviour
 
 
         return message;
+    }
+
+    public void RemoveTicket()
+    {
+        _currentDeathTickets--;
     }
 }
