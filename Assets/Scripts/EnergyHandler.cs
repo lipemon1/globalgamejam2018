@@ -58,4 +58,10 @@ public class EnergyHandler : MonoBehaviour {
     {
         _holdingShot = value;
     }
+
+    public void TryToShoot()
+    {
+        _holdingShot = false;
+        //instaitate here
+    }
 }

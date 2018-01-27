@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
             IsAiming = false;
 
             _energyHandler.ToogleShield(false);
+            _energyHandler.TryToShoot();
         }
     }
 
