@@ -918,6 +918,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 733cdc3833a7962479562c22092099a1, type: 2}
   _playerPrefab: {fileID: 1767858670192836, guid: a6a30bd5e9928f8458edfd6d0ef55596,
     type: 2}
+  _initialEnergy: 1
   _spawnTransforms:
   - {fileID: 1037215295}
   - {fileID: 1971638246}

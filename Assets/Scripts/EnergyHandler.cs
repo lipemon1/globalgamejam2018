@@ -115,8 +115,10 @@ public class EnergyHandler : MonoBehaviour {
 
     private void Shoot(GameObject bulletPrefab, float holdTime, int energyAmount)
     {
-        _playerData.SetEnergyAmount(energyAmount);
+        _playerData.SetEnergyAmount(-energyAmount);
         GameObject bullet = Instantiate(bulletPrefab, _shootSpawner.transform.position, transform.rotation);
+
+        bullet.GetComponent<CollactableBehaviour>().SetEnergyAmount(energyAmount);
 
         _bulletDistance = Mathf.Lerp(_minBulletDistance, _maxBulletDistance, Mathf.InverseLerp(0, _maxForceToShoot, holdTime));
 

@@ -141,9 +141,10 @@ public class GameLoop : MonoBehaviour {
             {
                 Global.Player[i].Instance = Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation).GetComponent<Player>();
                 Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
-                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(_initialEnergy);
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Instance.GetComponent<Renderer>().material = _playerMaterials[i];
+
+                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(_initialEnergy);
             }
         }
     }

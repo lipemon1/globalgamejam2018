@@ -19,4 +19,6 @@ public class CollactableBehaviour : MonoBehaviour {
     }
 
     public int GetEnergyAmount() { return _energyAmount; }
+
+    public void SetEnergyAmount(int amount) { _energyAmount = amount; }
 }
