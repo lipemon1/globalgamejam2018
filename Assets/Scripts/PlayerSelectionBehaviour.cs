@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using XInputDotNetPure;
+using UnityEngine.SceneManagement;
 
 public enum SelectionState
 {
@@ -95,18 +97,15 @@ public class PlayerSelectionBehaviour : MonoBehaviour
 
     private bool AnyKeyDown(int _index)
     {
-        bool _down = Input.GetKeyDown(key[_index]);
-        return _down;
+        return JoystickInputController.Instance.GetAnyKeyDown((PlayerIndex)_index);
     }
     private bool AnyKey(int _index)
     {
-        bool _any = Input.GetKey(key[_index]);
-        return _any;
+        return JoystickInputController.Instance.GetAnyKey((PlayerIndex)_index);
     }
     private bool AnyKeyUp(int _index)
     {
-        bool _up = Input.GetKeyUp(key[_index]);
-        return _up;
+        return JoystickInputController.Instance.GetAnyKeyUp((PlayerIndex)_index);
     }
 
 
@@ -160,6 +159,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
                 _counter++;
         }
         Debug.Log("Iniciando partida com " + _counter + " Players");
+        SceneManager.LoadScene("Main");
     }
 
 }
