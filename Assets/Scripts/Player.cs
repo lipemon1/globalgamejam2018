@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
     public float AimDuration;
     public LineRenderer Aim;
 
+    [Header("Energy Handler")]
+    [HideInInspector] private EnergyHandler _energyHandler;
+
     //Input
     private JoystickInputController _joyInputController;
 
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        _energyHandler = GetComponent<EnergyHandler>();
     }
 
     private void Start()
@@ -77,16 +81,22 @@ public class Player : MonoBehaviour
         {
             AimDuration = 0;
             IsAiming = true;
+
+            _energyHandler.ToogleShield(true);
         }
         if (_joyInputController.GetButton(Index, Ds4Button.Square))
         {
             AimDuration += Time.deltaTime;
             Aim.SetPositions(new[] {Vector3.zero, new Vector3(0, 0, AimDuration)});
+
+            _energyHandler.SetHoldingShot(true);
         }
         else if (_joyInputController.GetButtonUp(Index, Ds4Button.Square))
         {
             Aim.SetPositions(new[] {Vector3.zero, Vector3.zero});
             IsAiming = false;
+
+            _energyHandler.ToogleShield(false);
         }
     }
 
