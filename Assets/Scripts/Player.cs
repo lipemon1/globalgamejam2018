@@ -83,27 +83,30 @@ public class Player : MonoBehaviour
 
     private void HandleAim()
     {
-        if (_joyInputController.GetButtonDown(Index, Ds4Button.Square))
+        if(_energyHandler.GetPlayerEnergyAmount() > 0)
         {
-            AimDuration = 0;
-            IsAiming = true;
+            if (_joyInputController.GetButtonDown(Index, Ds4Button.Square))
+            {
+                AimDuration = 0;
+                IsAiming = true;
 
-            _energyHandler.ToogleShield(true);
-        }
-        if (_joyInputController.GetButton(Index, Ds4Button.Square))
-        {
-            AimDuration += Time.deltaTime;
-            Aim.SetPositions(new[] {Vector3.zero, new Vector3(0, 0, AimDuration)});
+                _energyHandler.ToogleShield(true);
+            }
+            if (_joyInputController.GetButton(Index, Ds4Button.Square))
+            {
+                AimDuration += Time.deltaTime;
+                Aim.SetPositions(new[] { Vector3.zero, new Vector3(0, 0, AimDuration) });
 
-            _energyHandler.SetHoldingShot(true, AimDuration);
-        }
-        else if (_joyInputController.GetButtonUp(Index, Ds4Button.Square))
-        {
-            Aim.SetPositions(new[] {Vector3.zero, Vector3.zero});
-            IsAiming = false;
+                _energyHandler.SetHoldingShot(true, AimDuration);
+            }
+            else if (_joyInputController.GetButtonUp(Index, Ds4Button.Square))
+            {
+                Aim.SetPositions(new[] { Vector3.zero, Vector3.zero });
+                IsAiming = false;
 
-            _energyHandler.ToogleShield(false);
-            _energyHandler.TryToShoot();
+                _energyHandler.ToogleShield(false);
+                _energyHandler.TryToShoot();
+            }
         }
     }
 
@@ -150,6 +153,10 @@ public class Player : MonoBehaviour
 
     public void ResetPlayer()
     {
-
+        IsIdle = true;
+        IsRunning = false;
+        IsDashing = false;
+        IsAiming = false;
+        AimDuration = 0f;
     }
 }

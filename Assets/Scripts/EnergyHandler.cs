@@ -81,7 +81,6 @@ public class EnergyHandler : MonoBehaviour {
 
         if (_bulletShootForce < _maxForceToShoot)
             _bulletShootForce = forceValue;
-            //_bulletShootForce = forceValue * _forceMultiplier;
         else
             _bulletShootForce = _maxForceToShoot;
     }

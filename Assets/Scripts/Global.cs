@@ -70,6 +70,9 @@ public static class Global {
         playerToRespawn.Instance.gameObject.transform.rotation = playerToRespawn.PositionToSpawn.rotation;
 
         playerToRespawn.Instance.EnablePlayerControl();
+        playerToRespawn.Instance.ResetPlayer();
+        playerToRespawn.PlayerEnergy.ToogleShield(false);
+        playerToRespawn.PlayerEnergy.SetHoldingShot(false, 0f);
     }
 
     /// <summary>
