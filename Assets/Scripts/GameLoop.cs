@@ -17,9 +17,10 @@ public class GameLoop : MonoBehaviour {
     [Header("Players Controllers")]
     [SerializeField] private List<Player> _playersControllersList = new List<Player>();
 
-    [Header("Prefabs")]
+    [Header("Player Config")]
     [SerializeField] private Material[] _playerMaterials;
     [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private int _initialEnergy;
     [SerializeField] private Transform[] _spawnTransforms = new Transform[12];
 
     [Header("Other Info")]
@@ -138,6 +139,7 @@ public class GameLoop : MonoBehaviour {
             {
                 Global.Player[i].Instance = Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation).GetComponent<Player>();
                 Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
+                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(_initialEnergy);
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Instance.GetComponent<Renderer>().material = _playerMaterials[i];
             }

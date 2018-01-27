@@ -33,7 +33,6 @@ public class EnergyHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Invoke("EnableShooting", 1f);
-        _playerData.SetEnergyAmount(1);
 	}
 	
 	// Update is called once per frame
@@ -123,6 +122,15 @@ public class EnergyHandler : MonoBehaviour {
 
         BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
         bulletBehaviour.Set(_standardBulletVelocity, _bulletDistance);
+    }
+
+    /// <summary>
+    /// Retorna a quantidade de energia atual do jogador
+    /// </summary>
+    /// <returns></returns>
+    public int GetPlayerEnergyAmount()
+    {
+        return _playerData.GetEnergyAmount();
     }
 
     /// <summary>
