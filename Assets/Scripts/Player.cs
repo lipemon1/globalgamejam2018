@@ -9,22 +9,33 @@ public class Player : MonoBehaviour
 
     public PlayerIndex Index = PlayerIndex.One;
 
-    [Header("Movimentation Settings")] public float MovSpeed = 10;
+    [Header("Movimentation Settings")]
+    public float MovSpeed = 10;
 
-    [Header("Rotation Settings")] public float RotSlerpSpeed = 12;
+    [Header("Rotation Settings")]
+    public float RotSlerpSpeed = 12;
 
 
     [Header("Dash Settings")]
     public AnimationCurve DashAnimationCurve;
-    public float DashCooldown { get { return DashAnimationCurve.keys.Last().time + 0.5f; } }
+
+    public float DashCooldown
+    {
+        get { return DashAnimationCurve.keys.Last().time + 0.5f; }
+    }
+
     private bool _canDash = true;
 
-    [Header("States")] 
+    [Header("States")]
     public bool IsIdle;
     public bool IsRunning;
     public bool IsDashing;
     public bool IsAiming;
-    
+
+    [Header("Aim Settings")]
+    public float AimDuration;
+    public LineRenderer Aim;
+
     //Input
     private JoystickInputController _joyInputController;
 
@@ -42,9 +53,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement(_joyInputController.LeftStick(Index));
-        HandleRotation(_joyInputController.LeftStick(Index));
-        HandleDash();
+        if (!IsDashing && !IsAiming) HandleMovement(_joyInputController.LeftStick(Index));
+        if (!IsDashing) HandleRotation(_joyInputController.LeftStick(Index));
+        if (!IsAiming) HandleDash();
+        HandleAim();
     }
 
     #endregion
@@ -57,6 +69,25 @@ public class Player : MonoBehaviour
     private void HandleRotation(Vector2 stick)
     {
         transform.forward = Vector3.Slerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * RotSlerpSpeed);
+    }
+
+    private void HandleAim()
+    {
+        if (_joyInputController.GetButtonDown(Index, Ds4Button.Square))
+        {
+            AimDuration = 0;
+            IsAiming = true;
+        }
+        if (_joyInputController.GetButton(Index, Ds4Button.Square))
+        {
+            AimDuration += Time.deltaTime;
+            Aim.SetPositions(new[] {Vector3.zero, new Vector3(0, 0, AimDuration)});
+        }
+        else if (_joyInputController.GetButtonUp(Index, Ds4Button.Square))
+        {
+            Aim.SetPositions(new[] {Vector3.zero, Vector3.zero});
+            IsAiming = false;
+        }
     }
 
     private void HandleDash()
