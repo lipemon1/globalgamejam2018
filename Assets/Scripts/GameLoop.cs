@@ -76,7 +76,7 @@ public class GameLoop : MonoBehaviour {
 
     private IEnumerator RoundStarting()
     {
-        ForceOnepLayer();
+        ForceManualSettingPlayers();
 
         //set the game tickets
         _currentDeathTickets = _deathTicketsForMatch;
@@ -114,15 +114,19 @@ public class GameLoop : MonoBehaviour {
         // Get a message based on the scores and whether or not there is a game winner and display it.
         _messageText.text = _finalMessage;
 
+        Global.Player.Clear();
+
         // Wait for the specified length of time until yielding control back to the game loop.
         yield return _endWait;
     }
 
-    private void ForceOnepLayer()
+    private void ForceManualSettingPlayers()
     {
-        Global.ResetAllPlayers();
-        
-        for (int i = 0; i < 4; i++) Global.Player[i].exist = true;
+        if(Global.Player.Count == 0)
+        {
+            Global.ResetAllPlayers();
+            for (int i = 0; i < 4; i++) Global.Player[i].exist = true;
+        }
     }
 
     // This function is used to turn all the tanks back on and reset their positions and properties.
