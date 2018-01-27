@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 114879668068190632}
   - component: {fileID: 114937945790495374}
   - component: {fileID: 114034775536842656}
+  - component: {fileID: 114290605424383076}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -979,7 +980,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c226851b2efc4c84f8889010ccce941e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canRecieveDamage: 0
   _energyTag: EnergyBullet
+--- !u!114 &114290605424383076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638863029441292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b38fe4bde25a5f45bf6006021c26b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isBlinking: 0
+  _target: {fileID: 1301168185327464}
+  _blinkTimes: 10
+  _delayBetweenBlinks: 0.125
 --- !u!114 &114879668068190632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1030,6 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c4834c87afca6458d10672ca649724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canRecieveDamage: 0
   _canShoot: 0
   _shieldIsOn: 0
   _holdingShot: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnergyHandler : MonoBehaviour {
 
     [Header("Debug")]
+    [SerializeField] private bool _canRecieveDamage;
     [SerializeField] private bool _canShoot;
     [SerializeField] private bool _shieldIsOn;
     [SerializeField] private bool _holdingShot;
@@ -51,15 +52,18 @@ public class EnergyHandler : MonoBehaviour {
     /// <param name="damageAmount"></param>
     public void TryRecieveDamage(int damageAmount)
     {
-        if (_shieldIsOn)
+        if (_canRecieveDamage)
         {
-            if (damageAmount <= _playerData.GetEnergyAmount())
+            if (_shieldIsOn)
             {
-                ToogleShield(false);
-            }
-            else
-            {
-                OnDeath();
+                if (damageAmount <= _playerData.GetEnergyAmount())
+                {
+                    ToogleShield(false);
+                }
+                else
+                {
+                    OnDeath();
+                }
             }
         }
     }
@@ -142,4 +146,6 @@ public class EnergyHandler : MonoBehaviour {
     {
         return (_playerData.GetEnergyAmount() > 0 && _canShoot);
     }
+
+    public void SetCanRecieveDamage(bool value) { _canRecieveDamage = value; }
 }

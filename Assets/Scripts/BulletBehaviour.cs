@@ -18,6 +18,13 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private int _energyAmount;
 
+    [Header("Bullet")]
+    [SerializeField]
+    private GameObject _bulletPrefab;
+    [Range(0, 10)]
+    [SerializeField]
+    private float _distanceToChildrenBullets = 0.25f;
+
     public void Fire(float distance)
     {
         StartCoroutine(FireCo(distance));
@@ -52,6 +59,30 @@ public class BulletBehaviour : MonoBehaviour
     private void BulletStop()
     {
         SetCanBePicked(true);
+
+        if (_energyAmount > 1)
+            SpawnNewBullets(_energyAmount);
+    }
+
+    private void SpawnNewBullets(int energyAmount)
+    {
+        for (int i = 0; i < energyAmount; i++)
+        {
+            GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.Euler(GetRandomDirection()));
+            BulletBehaviour bulletBehaviour = newBullet.GetComponent<BulletBehaviour>();
+            bulletBehaviour.SetEnergyAmount(1);
+            bulletBehaviour.Fire(_distanceToChildrenBullets);
+            newBullet.transform.localScale = Vector3.one;
+        }
+        SetEnergyAmount(1);
+        Destroy(gameObject); 
+    }
+
+    Vector3 GetRandomDirection()
+    {
+        float yRot = Random.Range(0, 360);
+
+        return new Vector3(0f, yRot, 0f);
     }
 
     public bool CanBePicked() { return _canBePicked; }
