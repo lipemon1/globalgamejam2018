@@ -24,7 +24,7 @@ public class CollactableHandler : MonoBehaviour {
     {
         if (other.gameObject.CompareTag(_energyTag))
         {
-            CollactableBehaviour bulletCB = other.GetComponent<CollactableBehaviour>();
+            BulletBehaviour bulletCB = other.GetComponent<BulletBehaviour>();
 
             if (bulletCB.CanBePicked() && _energyHandler.GetPlayerEnergyAmount() < GameLoop.MAX_ENERGY)
                 CollectEnergy(bulletCB);
@@ -33,7 +33,7 @@ public class CollactableHandler : MonoBehaviour {
         }
     }
 
-    private void CollectEnergy(CollactableBehaviour bulletCB)
+    private void CollectEnergy(BulletBehaviour bulletCB)
     {
         Debug.Log("EnergyCollected");
         _energyHandler.RecieveSomeEnergy(bulletCB.GetEnergyAmount());
@@ -42,6 +42,12 @@ public class CollactableHandler : MonoBehaviour {
 
     private void KillPlayer()
     {
+        Global.StartKillingSomePlayer(this.gameObject);
+        Invoke("Respawn", 2f);
+    }
 
+    private void Respawn()
+    {
+        Global.RespawnSomePlayer(this.gameObject);
     }
 }

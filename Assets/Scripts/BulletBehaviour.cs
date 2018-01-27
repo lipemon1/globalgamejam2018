@@ -5,38 +5,63 @@ using System.Linq;
 
 public class BulletBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    private float _startSpeed = 50;
+    [SerializeField]
+    private float _currentSpeed = 0;
+
     [Header("Debug")]
     [SerializeField]
     private bool _canBePicked;
 
-    public AnimationCurve Curve;
-    private float _speed;
-    private float _distance;
+    [Header("Energy Amount")]
+    [SerializeField]
+    private int _energyAmount;
 
-    public void Set(float speed, float distance)
+    public void Fire(float distance)
     {
-        _distance = distance;
-        _speed = speed;
-        StartCoroutine(Go(transform.forward, distance));
-        Invoke("MakeItPickable", 4);
+        StartCoroutine(FireCo(distance));
     }
 
-    private void MakeItPickable()
+    public IEnumerator FireCo(float distance)
     {
-        GetComponent<CollactableBehaviour>().SetCanBePicked(true);
-    }
+        Vector3 direction = transform.forward;
+        float a = -Mathf.Pow(_startSpeed, 2) / 2 / distance;
 
-    private IEnumerator Go(Vector3 direction, float distance)
-    {
-        float timer = 0;
-        Vector3 initialPosition = transform.position;
-        Vector3 finalPosition = transform.position + direction * distance;
-        while (timer < Curve.keys.Last().time)
+        _currentSpeed = _startSpeed;
+        while (_currentSpeed > 0)
         {
-            float value = Curve.Evaluate(timer);
-            transform.position = Vector3.Lerp(initialPosition, finalPosition, value);
-            timer += Time.deltaTime;
+            _currentSpeed += a * Time.deltaTime;
+            Vector3 destinationPosition = transform.position + direction * _currentSpeed * Time.deltaTime;
+            RaycastHit hit;
+            if (Physics.Linecast(transform.position, destinationPosition, out hit))
+            {
+                transform.Translate(direction * hit.distance, Space.World);
+                direction = Vector3.Reflect(direction, hit.normal);
+            }
+            else
+            {
+                transform.Translate(direction * _currentSpeed * Time.deltaTime, Space.World);
+            }
             yield return null;
         }
+
+        BulletStop();
     }
+
+    private void BulletStop()
+    {
+        SetCanBePicked(true);
+    }
+
+    public bool CanBePicked() { return _canBePicked; }
+    public void SetCanBePicked(bool value)
+    {
+        _canBePicked = value;
+        transform.localScale *= 1.5f;
+    }
+
+    public int GetEnergyAmount() { return _energyAmount; }
+
+    public void SetEnergyAmount(int amount) { _energyAmount = amount; }
 }

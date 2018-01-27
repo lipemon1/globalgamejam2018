@@ -118,12 +118,12 @@ public class EnergyHandler : MonoBehaviour {
         _playerData.SetEnergyAmount(-energyAmount);
         GameObject bullet = Instantiate(bulletPrefab, _shootSpawner.transform.position, transform.rotation);
 
-        bullet.GetComponent<CollactableBehaviour>().SetEnergyAmount(energyAmount);
+        bullet.GetComponent<BulletBehaviour>().SetEnergyAmount(energyAmount);
 
         _bulletDistance = Mathf.Lerp(_minBulletDistance, _maxBulletDistance, Mathf.InverseLerp(0, _maxForceToShoot, holdTime));
 
         BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
-        bulletBehaviour.Set(_standardBulletVelocity, _bulletDistance);
+        bulletBehaviour.Fire(_bulletDistance);
     }
 
     /// <summary>
