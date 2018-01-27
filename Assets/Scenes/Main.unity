@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -88,8 +88,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 33d353af7196ea44b907d75af55bd80e,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -330,6 +330,51 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224550504689522680, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 51.69995
+      objectReference: {fileID: 0}
+    - target: {fileID: 224952735702116178, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 51.80005
+      objectReference: {fileID: 0}
+    - target: {fileID: 224952735702116178, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -49.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011580709285144, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: _index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545196284371148, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: _index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114118004509547400, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: _index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011580709285144, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: Index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545196284371148, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: Index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114118004509547400, guid: 921318e59cfe09a4ca7b86094fa04645,
+        type: 2}
+      propertyPath: Index
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 921318e59cfe09a4ca7b86094fa04645, type: 2}
   m_IsPrefabParent: 0
@@ -338,6 +383,51 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224161621589754374, guid: 921318e59cfe09a4ca7b86094fa04645,
     type: 2}
   m_PrefabInternal: {fileID: 53273938}
+--- !u!114 &53273940 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114118004509547400, guid: 921318e59cfe09a4ca7b86094fa04645,
+    type: 2}
+  m_PrefabInternal: {fileID: 53273938}
+  m_Script: {fileID: 11500000, guid: e4be6097d28ccf041a050c2e9b23e287, type: 3}
+--- !u!114 &53273941 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114545196284371148, guid: 921318e59cfe09a4ca7b86094fa04645,
+    type: 2}
+  m_PrefabInternal: {fileID: 53273938}
+  m_Script: {fileID: 11500000, guid: e4be6097d28ccf041a050c2e9b23e287, type: 3}
+--- !u!114 &53273942 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114011580709285144, guid: 921318e59cfe09a4ca7b86094fa04645,
+    type: 2}
+  m_PrefabInternal: {fileID: 53273938}
+  m_Script: {fileID: 11500000, guid: e4be6097d28ccf041a050c2e9b23e287, type: 3}
+--- !u!114 &53273943 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114141397559206838, guid: 921318e59cfe09a4ca7b86094fa04645,
+    type: 2}
+  m_PrefabInternal: {fileID: 53273938}
+  m_Script: {fileID: 11500000, guid: e4be6097d28ccf041a050c2e9b23e287, type: 3}
+--- !u!1 &53273944 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1886980879259476, guid: 921318e59cfe09a4ca7b86094fa04645,
+    type: 2}
+  m_PrefabInternal: {fileID: 53273938}
+--- !u!114 &53273945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53273944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b54bc63bc74ab046a96b1263d9c2423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UserPlates:
+  - {fileID: 53273943}
+  - {fileID: 53273942}
+  - {fileID: 53273941}
+  - {fileID: 53273940}
 --- !u!1 &186720628
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +1008,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 733cdc3833a7962479562c22092099a1, type: 2}
   _playerPrefab: {fileID: 1767858670192836, guid: a6a30bd5e9928f8458edfd6d0ef55596,
     type: 2}
+  _initialEnergy: 0
   _spawnTransforms:
   - {fileID: 1037215295}
   - {fileID: 1971638246}
@@ -931,7 +1022,6 @@ MonoBehaviour:
   - {fileID: 735916972}
   - {fileID: 386948671}
   - {fileID: 1480455777}
-  _lastSpawnTransformIndex: 0
   _startMessage: "Come\xE7ando..."
   _finalMessage: Terminando...
   _currentDeathTickets: 0

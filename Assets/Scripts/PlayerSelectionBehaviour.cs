@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using XInputDotNetPure;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum SelectionState
 {
@@ -18,6 +19,7 @@ public class SelectionPanel
     public bool Entering;
     public float Timer;
     public float normalizedTime;
+    public Image FillImage;
 
     public SelectionPanel()
     {
@@ -33,6 +35,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
 
     [SerializeField] private float MaxTime = 5f;
     [SerializeField] private float Timer = 0;
+    [SerializeField] private Image[] FillImages;
 
     private SelectionState state;
     [SerializeField] private List<SelectionPanel> SelectionPlayer;
@@ -43,8 +46,14 @@ public class PlayerSelectionBehaviour : MonoBehaviour
     private void Awake()
     {
         Global.ResetAllPlayers();
+
+
+
         for (int i = 0; i < Global.MaxPlayers; i++)
+        {
             SelectionPlayer.Add(new SelectionPanel());
+            SelectionPlayer.Last().FillImage = FillImages[i];
+        }
     }
 
     private void Update()
@@ -140,6 +149,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
 
             SelectionPlayer[_index].Timer += Time.deltaTime;
             SelectionPlayer[_index].normalizedTime = (SelectionPlayer[_index].Timer / TimeToConfirm);
+            SelectionPlayer[_index].FillImage.fillAmount = SelectionPlayer[_index].normalizedTime;
 
             if (SelectionPlayer[_index].Timer > TimeToConfirm)
             {
