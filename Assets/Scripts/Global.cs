@@ -30,7 +30,7 @@ public class PlayerInfo
 
 public static class Global {
     
-    public const int MaxPlayers = 8;
+    public const int MaxPlayers = 4;
 
     public static List<PlayerInfo> Player = new List<PlayerInfo>();
 
