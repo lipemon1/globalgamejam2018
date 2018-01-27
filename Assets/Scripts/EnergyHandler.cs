@@ -11,6 +11,13 @@ public class EnergyHandler : MonoBehaviour {
     [Header("Shield Params")]
     [SerializeField] private GameObject _shieldObject;
 
+    [Header("Shoot Params")]
+    [SerializeField] private GameObject _bulletPrefab;
+    [Range(0,1)]
+    [SerializeField] private float _maxForceToShoot = 1f;
+    [SerializeField] private float _bulletShootForce = 0f;
+    [SerializeField] private float _forceMultiplier = 0.5f;
+
     [Header("Player Data")]
     [SerializeField] private PlayerData _playerData;
 
@@ -54,14 +61,22 @@ public class EnergyHandler : MonoBehaviour {
         _shieldObject.SetActive(value);
     }
 
-    public void SetHoldingShot(bool value)
+    public void SetHoldingShot(bool value, float forceValue)
     {
         _holdingShot = value;
+
+        if (_bulletShootForce < _maxForceToShoot)
+            _bulletShootForce = forceValue * _forceMultiplier;
+        else
+            _bulletShootForce = _maxForceToShoot;
     }
 
     public void TryToShoot()
     {
         _holdingShot = false;
+        float force = _bulletShootForce;
+        _bulletShootForce = 0f;
+        Debug.LogWarning("Shoot with force: " + force.ToString("F2"));
         //instaitate here
     }
 }

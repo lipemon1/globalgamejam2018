@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
             AimDuration += Time.deltaTime;
             Aim.SetPositions(new[] {Vector3.zero, new Vector3(0, 0, AimDuration)});
 
-            _energyHandler.SetHoldingShot(true);
+            _energyHandler.SetHoldingShot(true, AimDuration);
         }
         else if (_joyInputController.GetButtonUp(Index, Ds4Button.Square))
         {
