@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class CollactableHandler : MonoBehaviour {
 
+    [Header("Debug")]
+    [SerializeField] private bool _canRecieveDamage;
+
     [Header("Energy Tag")]
     [SerializeField] private string _energyTag = "EnergyBullet";
 
     [Header("EnergyHandler")]
     [HideInInspector] private EnergyHandler _energyHandler;
+    [HideInInspector] private Player _playerController;
 
     // Use this for initialization
     void Start () {
         _energyHandler = GetComponent<EnergyHandler>();
-	}
+        _playerController = GetComponent<Player>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,12 +47,12 @@ public class CollactableHandler : MonoBehaviour {
 
     private void KillPlayer()
     {
-        Global.StartKillingSomePlayer(this.gameObject);
+        Global.StartKillingSomePlayer((int)_playerController.Index);
         Invoke("Respawn", 2f);
     }
 
     private void Respawn()
     {
-        Global.RespawnSomePlayer(this.gameObject);
+        Global.RespawnSomePlayer((int)_playerController.Index);
     }
 }

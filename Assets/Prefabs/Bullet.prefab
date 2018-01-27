@@ -295,6 +295,8 @@ MonoBehaviour:
   _radius: 1
   _canBePicked: 0
   _energyAmount: 0
+  _bulletPrefab: {fileID: 1817350575218722}
+  _distanceToChildrenBullets: 3
 --- !u!135 &135821316033955430
 SphereCollider:
   m_ObjectHideFlags: 1

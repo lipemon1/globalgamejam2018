@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: c7d198800f676fb43ae3dfed5146209d
+timeCreated: 1517086742
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: arm.L
+    100002: arm.R
+    100004: arm_CTRL.L
+    100006: arm_CTRL.L_end
+    100008: arm_CTRL.R
+    100010: arm_CTRL.R_end
+    100012: Armature
+    100014: battery.001
+    100016: battery_cone
+    100018: batteryCable_CTRL
+    100020: batteryCable_CTRL_end
+    100022: batteryControl
+    100024: Bone
+    100026: Bone.001
+    100028: Bone.006
+    100030: Bone.007
+    100032: Bone.008
+    100034: Bone.008_end
+    100036: Bone.013
+    100038: Bone.014
+    100040: Bone.015
+    100042: Bone.016
+    100044: Bone.017
+    100046: Bone.018
+    100048: Bone.019
+    100050: Bone.020
+    100052: Bone.021
+    100054: Bone.022
+    100056: Bone.023
+    100058: Bone.024
+    100060: Bone.025
+    100062: Bone.026
+    100064: Bone.027
+    100066: Bone.028
+    100068: Bone.028_end
+    100070: Bone.029
+    100072: Bone.030
+    100074: Bone.031
+    100076: forearm.L
+    100078: forearm.L_end
+    100080: forearm.R
+    100082: forearm.R_end
+    100084: leg.L
+    100086: leg.R
+    100088: leg2.L
+    100090: leg2.L_end
+    100092: leg2.R
+    100094: leg2.R_end
+    100096: leg_CTRL.L
+    100098: leg_CTRL.L_end
+    100100: leg_CTRL.R
+    100102: leg_CTRL.R_end
+    100104: legPole.L
+    100106: legPole.L_end
+    100108: legPole.R
+    100110: legPole.R_end
+    100112: mainCharacter
+    100114: //RootNode
+    100116: pole_cable
+    100118: pole_cable_end
+    100120: poleElbow.L
+    100122: poleElbow.L_end
+    100124: poleElbow.R
+    100126: poleElbow.R_end
+    400000: arm.L
+    400002: arm.R
+    400004: arm_CTRL.L
+    400006: arm_CTRL.L_end
+    400008: arm_CTRL.R
+    400010: arm_CTRL.R_end
+    400012: Armature
+    400014: battery.001
+    400016: battery_cone
+    400018: batteryCable_CTRL
+    400020: batteryCable_CTRL_end
+    400022: batteryControl
+    400024: Bone
+    400026: Bone.001
+    400028: Bone.006
+    400030: Bone.007
+    400032: Bone.008
+    400034: Bone.008_end
+    400036: Bone.013
+    400038: Bone.014
+    400040: Bone.015
+    400042: Bone.016
+    400044: Bone.017
+    400046: Bone.018
+    400048: Bone.019
+    400050: Bone.020
+    400052: Bone.021
+    400054: Bone.022
+    400056: Bone.023
+    400058: Bone.024
+    400060: Bone.025
+    400062: Bone.026
+    400064: Bone.027
+    400066: Bone.028
+    400068: Bone.028_end
+    400070: Bone.029
+    400072: Bone.030
+    400074: Bone.031
+    400076: forearm.L
+    400078: forearm.L_end
+    400080: forearm.R
+    400082: forearm.R_end
+    400084: leg.L
+    400086: leg.R
+    400088: leg2.L
+    400090: leg2.L_end
+    400092: leg2.R
+    400094: leg2.R_end
+    400096: leg_CTRL.L
+    400098: leg_CTRL.L_end
+    400100: leg_CTRL.R
+    400102: leg_CTRL.R_end
+    400104: legPole.L
+    400106: legPole.L_end
+    400108: legPole.R
+    400110: legPole.R_end
+    400112: mainCharacter
+    400114: //RootNode
+    400116: pole_cable
+    400118: pole_cable_end
+    400120: poleElbow.L
+    400122: poleElbow.L_end
+    400124: poleElbow.R
+    400126: poleElbow.R_end
+    2100000: batteryBase_diff
+    2100002: Material
+    2100004: energy_diff
+    2300000: battery_cone
+    3300000: battery_cone
+    4300000: battery_cone
+    4300002: mainCharacter
+    4300004: battery.001
+    7400000: Armature|CameraAction
+    7400002: Armature|char_aim_1
+    7400004: Armature|char_aim_2
+    7400006: Armature|char_cheers
+    7400008: Armature|char_idle
+    7400010: Armature|char_shoot
+    7400012: Armature|char_walk
+    7400014: Armature|Death
+    7400016: Armature|Death_2.001
+    7400018: Armature|Death_3
+    7400020: Armature|PoseLib
+    7400022: battery.001|CameraAction
+    7400024: battery.001|char_aim_1
+    9500000: //RootNode
+    13700000: battery.001
+    13700002: mainCharacter
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 85653ec25d53b464683e1994734e9e93, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

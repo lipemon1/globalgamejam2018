@@ -8,11 +8,11 @@ public class UserPlate : MonoBehaviour
     public Player Owner;
 
     public PlayerIndex Index;
-    [SerializeField] private Image _fillImage;
+    [SerializeField] private Text _energyCountText;
 
-    public void SetFill(float value)
+    public void SetEnergyCount(int value)
     {
-        _fillImage.fillAmount = value;
+        _energyCountText.text = value.ToString();
     }
 
     public void DisableNamePlate()
@@ -22,6 +22,11 @@ public class UserPlate : MonoBehaviour
 
     private void Update()
     {
-        SetFill((float)Owner.GetComponent<EnergyHandler>().GetPlayerEnergyAmount() / GameLoop.MAX_ENERGY);
+        SetEnergyCount(Owner.GetComponent<EnergyHandler>().GetPlayerEnergyAmount());
+    }
+
+    public void EnableNamePlate()
+    {
+        gameObject.SetActive(true);
     }
 }

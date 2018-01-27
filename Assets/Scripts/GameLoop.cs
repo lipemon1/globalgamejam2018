@@ -10,7 +10,10 @@ public class GameLoop : MonoBehaviour
     public static GameLoop Instance;
 
     public const int MAX_ENERGY = 4;
-    public const int INITIAL_ENERGY = 1;
+    public const int INITIAL_ENERGY = 2;
+    
+    [Header("Game Configurations")]
+    [SerializeField] public bool RespawnWithEnergy = false;
 
     [Header("General Settings")] [SerializeField] private float _startDelay = 3f;
     [SerializeField] private float _endDelay = 3f;
@@ -141,6 +144,7 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(INITIAL_ENERGY);
                 Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
+                Global.Player[i].Blinker = Global.Player[i].Instance.gameObject.GetComponent<Blinker>();
 
                 foreach (var rend in Global.Player[i].Instance.GetComponentsInChildren<Renderer>())
                 {
@@ -151,6 +155,7 @@ public class GameLoop : MonoBehaviour
                     if (userPlate.Index == Global.Player[i].Instance.Index)
                     {
                         userPlate.Owner = Global.Player[i].Instance;
+                        userPlate.EnableNamePlate();
                     }
             }
         }

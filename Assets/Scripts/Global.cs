@@ -12,6 +12,7 @@ public class PlayerInfo
     public Transform PositionToSpawn;
     public Player Instance;
     public EnergyHandler PlayerEnergy;
+    public Blinker Blinker;
     public int kills;
     public int deaths;
 
@@ -50,9 +51,9 @@ public static class Global {
         }
     }
 
-    public static void StartKillingSomePlayer(GameObject playerObjectInstance)
+    public static void StartKillingSomePlayer(int playerToStartKilling)
     {
-        PlayerInfo playerToKill = GetMyPlayer(playerObjectInstance);
+        PlayerInfo playerToKill = Player[playerToStartKilling];
 
         playerToKill.Instance.DisablePlayerControl();
 
@@ -60,11 +61,12 @@ public static class Global {
         //TO DO Call death animation here
     }
 
-    public static void RespawnSomePlayer(GameObject playerObjectInstance)
+    public static void RespawnSomePlayer(int playerToRespawnNow)
     {
-        PlayerInfo playerToRespawn = GetMyPlayer(playerObjectInstance);
+        PlayerInfo playerToRespawn = Player[playerToRespawnNow];
 
-        playerToRespawn.Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(GameLoop.INITIAL_ENERGY);
+        if(GameLoop.Instance.RespawnWithEnergy)
+            playerToRespawn.Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(GameLoop.INITIAL_ENERGY);
 
         playerToRespawn.Instance.gameObject.transform.position = playerToRespawn.PositionToSpawn.position;
         playerToRespawn.Instance.gameObject.transform.rotation = playerToRespawn.PositionToSpawn.rotation;
@@ -73,15 +75,7 @@ public static class Global {
         playerToRespawn.Instance.ResetPlayer();
         playerToRespawn.PlayerEnergy.ToogleShield(false);
         playerToRespawn.PlayerEnergy.SetHoldingShot(false, 0f);
-    }
-
-    /// <summary>
-    /// Retorna qual jogador dentro da lista de jogadores eu sou
-    /// </summary>
-    /// <param name="playerObjectInstance"></param>
-    /// <returns></returns>
-    public static PlayerInfo GetMyPlayer(GameObject playerObjectInstance)
-    {
-        return Player.Where(player => player.Instance.gameObject == playerObjectInstance).ToList().FirstOrDefault();
+        playerToRespawn.Blinker.StartBlink(() => playerToRespawn.PlayerEnergy.SetCanRecieveDamage(true));
+        
     }
 }
