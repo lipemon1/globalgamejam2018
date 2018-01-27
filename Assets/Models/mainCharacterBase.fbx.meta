@@ -157,7 +157,12 @@ ModelImporter:
     9500000: //RootNode
     13700000: battery.001
     13700002: mainCharacter
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 85653ec25d53b464683e1994734e9e93, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
