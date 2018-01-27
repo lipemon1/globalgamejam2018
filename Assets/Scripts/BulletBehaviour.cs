@@ -9,6 +9,8 @@ public class BulletBehaviour : MonoBehaviour
     private float _startSpeed = 50;
     [SerializeField]
     private float _currentSpeed = 0;
+    [SerializeField]
+    private float _radius = 1;
 
     [Header("Debug")]
     [SerializeField]
@@ -17,6 +19,7 @@ public class BulletBehaviour : MonoBehaviour
     [Header("Energy Amount")]
     [SerializeField]
     private int _energyAmount;
+
 
     public void Fire(float distance)
     {
@@ -34,7 +37,8 @@ public class BulletBehaviour : MonoBehaviour
             _currentSpeed += a * Time.deltaTime;
             Vector3 destinationPosition = transform.position + direction * _currentSpeed * Time.deltaTime;
             RaycastHit hit;
-            if (Physics.Linecast(transform.position, destinationPosition, out hit))
+            if(Physics.SphereCast(transform.position, _radius, destinationPosition, out hit, _currentSpeed * Time.deltaTime))
+            //if (Physics.Linecast(transform.position, destinationPosition, out hit))
             {
                 transform.Translate(direction * hit.distance, Space.World);
                 direction = Vector3.Reflect(direction, hit.normal);

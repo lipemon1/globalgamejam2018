@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 42b9edc4ea1badc4688538aa86f7c86b
+timeCreated: 1517096490
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lemonade Stand
+  fontNames:
+  - Lemonade Stand
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
