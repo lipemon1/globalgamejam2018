@@ -30,7 +30,7 @@ public class CollactableHandler : MonoBehaviour {
         {
             CollactableBehaviour bulletCB = other.GetComponent<CollactableBehaviour>();
 
-            if (bulletCB.CanBePicked())
+            if (bulletCB.CanBePicked() && _energyHandler.GetPlayerEnergyAmount() < GameLoop.MAX_ENERGY)
             {
                 _itemToCollect = other;
                 CollectEnergy(bulletCB);

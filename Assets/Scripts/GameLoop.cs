@@ -9,6 +9,8 @@ public class GameLoop : MonoBehaviour {
 
     public static GameLoop Instance;
 
+    public const int MAX_ENERGY = 4;
+
     [Header("General Settings")]
     [SerializeField] private float _startDelay = 3f;
     [SerializeField] private float _endDelay = 3f;
