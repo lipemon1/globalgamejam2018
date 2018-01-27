@@ -155,6 +155,7 @@ public class GameLoop : MonoBehaviour
                     if (userPlate.Index == Global.Player[i].Instance.Index)
                     {
                         userPlate.Owner = Global.Player[i].Instance;
+                        userPlate.EnableNamePlate();
                     }
             }
         }
