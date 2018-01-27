@@ -36,10 +36,12 @@ public class Spawnner : MonoBehaviour
             _timer += Time.deltaTime;
             _distance = Mathf.Lerp(MinDistance, MaxDistance, Mathf.InverseLerp(0, MaxTime, _timer));
 
+            //Bullet object
             GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
+
+            //Firing bullet
             BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
-            float drag = (Mathf.Pow(Velocity, 2)) / 2 / _distance;
-            bulletBehaviour.Set(Velocity, drag);
+            bulletBehaviour.Fire(_distance);
 
             lastSpawn = bullet;
         }

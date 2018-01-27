@@ -9,6 +9,7 @@ public class PlayerInfo
 {
     public bool exist;
     public Transform transform;
+    public Transform PositionToSpawn;
     public Player Instance;
     public EnergyHandler PlayerEnergy;
     public int kills;
@@ -54,13 +55,21 @@ public static class Global {
         PlayerInfo playerToKill = GetMyPlayer(playerObjectInstance);
 
         playerToKill.Instance.DisablePlayerControl();
+
+        GameLoop.Instance.RemoveTicket();
         //TO DO Call death animation here
     }
 
     public static void RespawnSomePlayer(GameObject playerObjectInstance)
     {
-        //PlayerInfo playerToKill = GetMyPlayer(playerObjectInstance);
-        //TO DO RESET PLAYER
+        PlayerInfo playerToRespawn = GetMyPlayer(playerObjectInstance);
+
+        playerToRespawn.Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(GameLoop.INITIAL_ENERGY);
+
+        playerToRespawn.Instance.gameObject.transform.position = playerToRespawn.PositionToSpawn.position;
+        playerToRespawn.Instance.gameObject.transform.rotation = playerToRespawn.PositionToSpawn.rotation;
+
+        playerToRespawn.Instance.EnablePlayerControl();
     }
 
     /// <summary>

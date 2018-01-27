@@ -10,6 +10,7 @@ public class GameLoop : MonoBehaviour {
     public static GameLoop Instance;
 
     public const int MAX_ENERGY = 4;
+    public const int INITIAL_ENERGY = 1;
 
     [Header("General Settings")]
     [SerializeField] private float _startDelay = 3f;
@@ -22,8 +23,8 @@ public class GameLoop : MonoBehaviour {
     [Header("Player Config")]
     [SerializeField] private Material[] _playerMaterials;
     [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] private int _initialEnergy;
     [SerializeField] private Transform[] _spawnTransforms = new Transform[12];
+    [SerializeField] private int _lastSpawnTransformIndex = 0;
 
     [Header("Other Info")]
     [HideInInspector]
@@ -140,11 +141,11 @@ public class GameLoop : MonoBehaviour {
             if (Global.Player[i].exist)
             {
                 Global.Player[i].Instance = Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation).GetComponent<Player>();
+                Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Instance.GetComponent<Renderer>().material = _playerMaterials[i];
-
-                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(_initialEnergy);
+                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(INITIAL_ENERGY);
             }
         }
     }
@@ -176,13 +177,8 @@ public class GameLoop : MonoBehaviour {
         return (_currentDeathTickets == 0);
     }
 
-    // Returns a string message to display at the end of each round.
-    private string EndMessage()
+    public void RemoveTicket()
     {
-        // By default when a round ends there are no winners so the default end message is a draw.
-        string message = "JOGO ACABOU";
-        
-
-        return message;
+        _currentDeathTickets--;
     }
 }
