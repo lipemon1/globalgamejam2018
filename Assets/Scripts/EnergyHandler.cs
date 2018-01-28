@@ -32,8 +32,19 @@ public class EnergyHandler : MonoBehaviour {
     [Header("Player Data")]
     [SerializeField] private PlayerData _playerData;
 
-	// Use this for initialization
-	void Start () {
+    [Header("Player Animator")]
+    [HideInInspector] private PlayerAnimController _playerAnimController;
+
+    [HideInInspector] private Player _playerController;
+
+    private void Awake()
+    {
+        _playerAnimController = GetComponent<PlayerAnimController>();
+        _playerController = GetComponent<Player>();
+    }
+
+    // Use this for initialization
+    void Start () {
         Invoke("EnableShooting", 1f);
 	}
 	
@@ -92,10 +103,14 @@ public class EnergyHandler : MonoBehaviour {
 #pragma warning restore CS0618 // O tipo ou membro é obsoleto
         }
         else
+        {
             _bulletShootForce = _maxForceToShoot;
 #pragma warning disable CS0618 // O tipo ou membro é obsoleto
-        ChargingParticle.startSize = 0.5f;
+            ChargingParticle.startSize = 0.5f;
 #pragma warning restore CS0618 // O tipo ou membro é obsoleto
+        }
+
+        _playerAnimController.UpdateChargingValue(_bulletShootForce);
     }
 
     /// <summary>
@@ -135,7 +150,10 @@ public class EnergyHandler : MonoBehaviour {
         _bulletDistance = Mathf.Lerp(_minBulletDistance, _maxBulletDistance, Mathf.InverseLerp(0, _maxForceToShoot, holdTime));
 
         BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
-        bulletBehaviour.Fire(_bulletDistance);
+        bulletBehaviour.Fire(_bulletDistance, (int)_playerController.Index);
+
+        _playerAnimController.Shoot();
+
 #pragma warning disable CS0618 // O tipo ou membro é obsoleto
         ChargingParticle.startSize = 0f;
         ChargingParticle.Clear();

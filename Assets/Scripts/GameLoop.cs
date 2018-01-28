@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,6 +8,21 @@ using XInputDotNetPure;
 
 public class GameLoop : MonoBehaviour
 {
+    [System.Serializable]
+    private class PlayerScore
+    {
+        public string Name = "";
+        public int Kills = 0;
+        public int Deaths = 0;
+
+        public PlayerScore(string name, int kills, int deaths)
+        {
+            Name = name;
+            Kills = kills;
+            Deaths = deaths;
+        }
+    }
+
     public static GameLoop Instance;
 
     public const int MAX_ENERGY = 4;
@@ -34,6 +50,9 @@ public class GameLoop : MonoBehaviour
 
     [Header("Tickets Available")] [SerializeField] private int _currentDeathTickets = 0;
     [SerializeField] private int _deathTicketsForMatch = 20;
+
+    [Header("End Match Data")]
+    [SerializeField] private List<PlayerScore> _playersScore = new List<PlayerScore>();
 
     private void Awake()
     {
@@ -110,6 +129,13 @@ public class GameLoop : MonoBehaviour
         // Stop players from moving.
         DisablePlayersControl();
 
+        //get player scores
+        for (int i = 0; i < Global.MaxPlayers; i++)
+        {
+            if (Global.Player[i].exist)
+                _playersScore.Add(new PlayerScore(("Player") + (i + 1).ToString(), Global.Player[i].kills, Global.Player[i].deaths));
+        }
+
         // Get a message based on the scores and whether or not there is a game winner and display it.
         _messageText.text = _finalMessage;
 
@@ -145,8 +171,9 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Blinker = Global.Player[i].Instance.gameObject.GetComponent<Blinker>();
+                Global.Player[i].PlayerAnimationsController = Global.Player[i].Instance.gameObject.GetComponent<PlayerAnimController>();
 
-                foreach (var rend in Global.Player[i].Instance.GetComponentsInChildren<Renderer>())
+                foreach (var rend in Global.Player[i].Instance.ColoredRenderers)
                 {
                     rend.material = _playerMaterials[i];
                 }
