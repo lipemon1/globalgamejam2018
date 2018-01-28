@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 using XInputDotNetPure;
 
 [RequireComponent(typeof(CharacterController))]
@@ -150,6 +151,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator DashCo()
     {
+        NavMeshAgent _agent = GetComponent<NavMeshAgent>();
+        _agent.enabled = false;
         float timer = 0;
         Debug.Log(DashAnimationCurve.keys.Last().time);
         while (timer < DashAnimationCurve.keys.Last().time)
@@ -160,6 +163,7 @@ public class Player : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         IsDashing = false;
+        _agent.enabled = true;
     }
 
     public void EnablePlayerControl()
