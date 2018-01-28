@@ -914,7 +914,7 @@ Prefab:
     - target: {fileID: 224712316395477452, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.600006
       objectReference: {fileID: 0}
     - target: {fileID: 224712316395477452, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -924,7 +924,7 @@ Prefab:
     - target: {fileID: 224712316395477452, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.20001
       objectReference: {fileID: 0}
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -944,7 +944,7 @@ Prefab:
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.599976
       objectReference: {fileID: 0}
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -954,7 +954,7 @@ Prefab:
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.19995
       objectReference: {fileID: 0}
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -974,7 +974,7 @@ Prefab:
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.600006
       objectReference: {fileID: 0}
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -984,7 +984,7 @@ Prefab:
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.20001
       objectReference: {fileID: 0}
     - target: {fileID: 224208562675537510, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -1004,7 +1004,7 @@ Prefab:
     - target: {fileID: 224208562675537510, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.6
       objectReference: {fileID: 0}
     - target: {fileID: 224208562675537510, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -1014,7 +1014,7 @@ Prefab:
     - target: {fileID: 224208562675537510, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 921318e59cfe09a4ca7b86094fa04645, type: 2}
@@ -1142,7 +1142,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 5048116f3e959bf459b20b1139cdb53b, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1

@@ -88,7 +88,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
                 Timer += Time.deltaTime;
                 for (int i = 0; i < Global.MaxPlayers; i++)
                 {
-                    if (AnyKey(i)&&!Global.Player[i].exist)
+                    if (AnyKey(i) && !Global.Player[i].exist)
                     {
                         Timer = 0;
                         break;
@@ -132,6 +132,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
             {
                 Debug.Log("Player " + i.ToString() + " soltou o botão");
                 SelectionPlayer[i].Entering = false;
+
             }
         }
     }
@@ -145,19 +146,25 @@ public class PlayerSelectionBehaviour : MonoBehaviour
         {
             Debug.Log("Player " + _index.ToString() + " está segurando o botão");
             if (!SelectionPlayer[_index].Entering)
+            {
                 yield break;
+            }
 
             SelectionPlayer[_index].Timer += Time.deltaTime;
             SelectionPlayer[_index].normalizedTime = (SelectionPlayer[_index].Timer / TimeToConfirm);
-            SelectionPlayer[_index].FillImage.fillAmount = SelectionPlayer[_index].normalizedTime;
+            float fillAmount = SelectionPlayer[_index].normalizedTime;
+            fillAmount = (float)((int)(fillAmount * 8)) / 8;
+            SelectionPlayer[_index].FillImage.fillAmount = fillAmount;
 
             if (SelectionPlayer[_index].Timer > TimeToConfirm)
             {
                 Global.Player[_index].exist = true;
                 Debug.Log("Player " + _index.ToString() + " Pronto");
+                yield break;
             }
             yield return new WaitForEndOfFrame();
         }
+        SelectionPlayer[_index].FillImage.fillAmount = 0f;
     }
 
     private void EndSelection()
