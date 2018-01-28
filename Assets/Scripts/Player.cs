@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public AnimationCurve DashAnimationCurve;
 
     [Header("Animator Controller")]
-    [SerializeField] private PlayerAnimController _playerAnimController;
+    private PlayerAnimController _playerAnimController;
 
     public float DashCooldown
     {

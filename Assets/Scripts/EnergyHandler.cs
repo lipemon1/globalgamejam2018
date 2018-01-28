@@ -40,6 +40,7 @@ public class EnergyHandler : MonoBehaviour {
     private void Awake()
     {
         _playerAnimController = GetComponent<PlayerAnimController>();
+        _playerController = GetComponent<Player>();
     }
 
     // Use this for initialization
