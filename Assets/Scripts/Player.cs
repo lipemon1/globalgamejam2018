@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     [Header("Dash Settings")]
     public AnimationCurve DashAnimationCurve;
+    [SerializeField] private ParticleSystem _dashParticle;
 
     [Header("Animator Controller")]
     private PlayerAnimController _playerAnimController;
@@ -131,6 +132,8 @@ public class Player : MonoBehaviour
             _canDash = false;
             IsDashing = true;
             Invoke("ResetCanDash", DashCooldown);
+            _dashParticle.Clear();
+            _dashParticle.Play();
         }
     }
 

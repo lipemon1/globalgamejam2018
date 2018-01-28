@@ -2,38 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollactableHandler : MonoBehaviour {
+public class CollactableHandler : MonoBehaviour
+{
 
     [Header("Debug")]
-    [SerializeField] private bool _canRecieveDamage;
+    [SerializeField]
+    private bool _canRecieveDamage;
+
+    [Header("Respawn Time")]
+    [SerializeField] private float _timeForRespawn = 3f;
 
     [Header("Player Colliders")]
-    [HideInInspector] private Collider _playerCollider;
+    [HideInInspector]
+    private Collider _playerCollider;
     [HideInInspector] private CharacterController _charachterController;
 
     [Header("Energy Tag")]
-    [SerializeField] private string _energyTag = "EnergyBullet";
+    [SerializeField]
+    private string _energyTag = "EnergyBullet";
 
     [Header("EnergyHandler")]
-    [HideInInspector] private EnergyHandler _energyHandler;
+    [HideInInspector]
+    private EnergyHandler _energyHandler;
     [HideInInspector] private Player _playerController;
 
     [Header("Player Animatino")]
-    [SerializeField] private PlayerAnimController _playerAnimController;
+    [SerializeField]
+    private PlayerAnimController _playerAnimController;
+
+    [Header("Particles")]
+    [SerializeField]
+    private ParticleSystem _deathParticle;
+    [SerializeField] private ParticleSystem _respawnParticle;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _energyHandler = GetComponent<EnergyHandler>();
         _playerController = GetComponent<Player>();
         _playerAnimController = GetComponent<PlayerAnimController>();
         _playerCollider = GetComponent<Collider>();
         _charachterController = GetComponent<CharacterController>();
+
+        _respawnParticle.Clear();
+        _respawnParticle.Play();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -63,7 +82,10 @@ public class CollactableHandler : MonoBehaviour {
 
         _playerAnimController.Die();
         Global.StartKillingSomePlayer((int)_playerController.Index);
-        Invoke("Respawn", 5f);
+        Invoke("Respawn", _timeForRespawn);
+
+        _deathParticle.Clear();
+        _deathParticle.Play();
     }
 
     public void Respawn()
@@ -71,5 +93,7 @@ public class CollactableHandler : MonoBehaviour {
         Global.RespawnSomePlayer((int)_playerController.Index);
         _playerCollider.enabled = true;
         _charachterController.enabled = true;
+        _respawnParticle.Clear();
+        _respawnParticle.Play();
     }
 }

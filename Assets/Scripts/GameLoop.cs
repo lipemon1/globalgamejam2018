@@ -8,6 +8,7 @@ using XInputDotNetPure;
 
 public class GameLoop : MonoBehaviour
 {
+
     [System.Serializable]
     private class PlayerScore
     {
@@ -45,7 +46,7 @@ public class GameLoop : MonoBehaviour
     [HideInInspector] private WaitForSeconds _endWait;
     [HideInInspector] private float _timeAlive;
 
-    [Header("Messages")] [SerializeField] private string _startMessage = "Começando...";
+    [Header("Messages")] [SerializeField] private string _startMessage = "AE HOU!";
     [SerializeField] private string _finalMessage = "Terminando...";
 
     [Header("Tickets Available")] [SerializeField] private int _currentDeathTickets = 0;
@@ -105,7 +106,17 @@ public class GameLoop : MonoBehaviour
 
         _messageText.text = _startMessage;
 
-        yield return _startWait;
+        int timeCounter = (int)_startDelay;
+
+        while (timeCounter > 0f)
+        {
+            _messageText.text = timeCounter.ToString();
+            timeCounter--;
+            yield return new WaitForSeconds(1);
+        }
+
+        _messageText.text = _startMessage;
+        yield return new WaitForSeconds(1);
     }
 
     private IEnumerator RoundPlaying()
