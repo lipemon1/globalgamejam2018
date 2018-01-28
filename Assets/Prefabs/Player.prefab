@@ -2949,36 +2949,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBlinking: 0
-  _target:
-  - {fileID: 137500761825233968}
-  - {fileID: 137027235853705906}
-  BlinkColor: {r: 1, g: 1, b: 1, a: 1}
+  _target: []
+  BlinkColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _blinkCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+    m_Curve: []
     m_PreInfinity: 2
-    m_PostInfinity: 0
-    m_RotationOrder: 0
-  _blinkSpeed: 2
-  _blinkDuration: 1.5
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _blinkSpeed: 1
+  _blinkDuration: 1
 --- !u!114 &114879668068190632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3051,7 +3031,6 @@ MonoBehaviour:
   _maxBulletDistance: 10
   _playerData:
     _energyAmount: 0
-  _playerAnimController: {fileID: 0}
 --- !u!114 &114943778708322782
 MonoBehaviour:
   m_ObjectHideFlags: 1
