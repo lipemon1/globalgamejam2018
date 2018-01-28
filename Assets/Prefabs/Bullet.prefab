@@ -324,6 +324,7 @@ MonoBehaviour:
   _startSpeed: 50
   _currentSpeed: 0
   _radius: 1
+  _playerTag: Player
   _canBePicked: 0
   _energyAmount: 0
   ChargeParticle: {fileID: 198247217051654806}

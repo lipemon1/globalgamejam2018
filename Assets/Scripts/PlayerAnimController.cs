@@ -40,6 +40,11 @@ public class PlayerAnimController : MonoBehaviour {
         _playerAnim.SetTrigger("Shoot");
     }
 
+    public void Respawn()
+    {
+        _playerAnim.SetTrigger("Respawn");
+    }
+
     public void Victory()
     {
         _playerAnim.SetTrigger("Win");

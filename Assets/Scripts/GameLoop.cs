@@ -145,6 +145,7 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Blinker = Global.Player[i].Instance.gameObject.GetComponent<Blinker>();
+                Global.Player[i].PlayerAnimationsController = Global.Player[i].Instance.gameObject.GetComponent<PlayerAnimController>();
 
                 foreach (var rend in Global.Player[i].Instance.ColoredRenderers)
                 {

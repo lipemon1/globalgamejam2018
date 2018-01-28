@@ -7,6 +7,10 @@ public class CollactableHandler : MonoBehaviour {
     [Header("Debug")]
     [SerializeField] private bool _canRecieveDamage;
 
+    [Header("Player Colliders")]
+    [HideInInspector] private Collider _playerCollider;
+    [HideInInspector] private CharacterController _charachterController;
+
     [Header("Energy Tag")]
     [SerializeField] private string _energyTag = "EnergyBullet";
 
@@ -22,6 +26,8 @@ public class CollactableHandler : MonoBehaviour {
         _energyHandler = GetComponent<EnergyHandler>();
         _playerController = GetComponent<Player>();
         _playerAnimController = GetComponent<PlayerAnimController>();
+        _playerCollider = GetComponent<Collider>();
+        _charachterController = GetComponent<CharacterController>();
     }
 	
 	// Update is called once per frame
@@ -49,14 +55,20 @@ public class CollactableHandler : MonoBehaviour {
         Destroy(bulletCB.gameObject);
     }
 
-    private void KillPlayer()
+    public void KillPlayer()
     {
+        _playerCollider.enabled = false;
+        _charachterController.enabled = false;
+
         _playerAnimController.Die();
         Global.StartKillingSomePlayer((int)_playerController.Index);
+        Invoke("Respawn", 5f);
     }
 
     public void Respawn()
     {
         Global.RespawnSomePlayer((int)_playerController.Index);
+        _playerCollider.enabled = true;
+        _charachterController.enabled = true;
     }
 }

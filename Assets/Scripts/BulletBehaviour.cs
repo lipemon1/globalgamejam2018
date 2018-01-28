@@ -11,6 +11,8 @@ public class BulletBehaviour : MonoBehaviour
     private float _currentSpeed = 0;
     [SerializeField]
     private float _radius = 1;
+    [SerializeField]
+    private string _playerTag = "Player";
 
     [Header("Debug")]
     [SerializeField]
@@ -45,11 +47,12 @@ public class BulletBehaviour : MonoBehaviour
             _currentSpeed += a * Time.deltaTime;
             Vector3 destinationPosition = transform.position + direction * _currentSpeed * Time.deltaTime;
             RaycastHit hit;
-            if(Physics.SphereCast(transform.position, _radius, direction, out hit, _currentSpeed * Time.deltaTime))
+            if (Physics.SphereCast(transform.position, _radius, direction, out hit, _currentSpeed * Time.deltaTime))
             //if (Physics.Linecast(transform.position, destinationPosition, out hit))
             {
                 transform.Translate(direction * hit.distance, Space.World);
                 direction = Vector3.Reflect(direction, hit.normal);
+                CheckAndKillPlayer(hit.collider);
             }
             else
             {
@@ -61,6 +64,18 @@ public class BulletBehaviour : MonoBehaviour
         }
 
         BulletStop();
+    }
+
+    private void CheckAndKillPlayer(Collider col)
+    {
+        if (col.gameObject.CompareTag(_playerTag))
+        {
+            CollactableHandler collactableHandler = col.gameObject.GetComponent<CollactableHandler>();
+            if(collactableHandler != null)
+            {
+                collactableHandler.KillPlayer();
+            }
+        }
     }
 
     private void BulletStop()

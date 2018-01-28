@@ -13,6 +13,7 @@ public class PlayerInfo
     public Player Instance;
     public EnergyHandler PlayerEnergy;
     public Blinker Blinker;
+    public PlayerAnimController PlayerAnimationsController;
     public int kills;
     public int deaths;
 
@@ -53,7 +54,7 @@ public static class Global {
 
     public static void StartKillingSomePlayer(int playerToStartKilling)
     {
-        PlayerInfo playerToKill = Player[playerToStartKilling];
+        PlayerInfo playerToKill = GetMyPlayer(playerToStartKilling);
 
         playerToKill.Instance.DisablePlayerControl();
 
@@ -63,7 +64,7 @@ public static class Global {
 
     public static void RespawnSomePlayer(int playerToRespawnNow)
     {
-        PlayerInfo playerToRespawn = Player[playerToRespawnNow];
+        PlayerInfo playerToRespawn = GetMyPlayer(playerToRespawnNow);
 
         if(GameLoop.Instance.RespawnWithEnergy)
             playerToRespawn.Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(GameLoop.INITIAL_ENERGY);
@@ -75,7 +76,19 @@ public static class Global {
         playerToRespawn.Instance.ResetPlayer();
         playerToRespawn.PlayerEnergy.ToogleShield(false);
         playerToRespawn.PlayerEnergy.SetHoldingShot(false, 0f);
+
+        playerToRespawn.PlayerAnimationsController.Respawn();
+
         playerToRespawn.Blinker.StartBlink(() => playerToRespawn.PlayerEnergy.SetCanRecieveDamage(true));
-        
+    }
+
+    public static void AddKill(int playerIndex)
+    {
+        //play
+    }
+
+    private static PlayerInfo GetMyPlayer(int playerIndex)
+    {
+        return Player[playerIndex];
     }
 }
