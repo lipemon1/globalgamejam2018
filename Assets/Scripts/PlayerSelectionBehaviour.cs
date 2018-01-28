@@ -21,6 +21,7 @@ public class SelectionPanel
     public float normalizedTime;
     public Image FillImage;
 
+
     public SelectionPanel()
     {
         Entering = false;
@@ -36,6 +37,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
     [SerializeField] private float MaxTime = 5f;
     [SerializeField] private float Timer = 0;
     [SerializeField] private Image[] FillImages;
+    [SerializeField] private Text TimerText;
 
     private SelectionState state;
     [SerializeField] private List<SelectionPanel> SelectionPlayer;
@@ -86,6 +88,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
             case SelectionState.WaitingOthers:
                 CheckInputs();
                 Timer += Time.deltaTime;
+                TimerText.text = Mathf.RoundToInt(MaxTime - Timer).ToString();
                 for (int i = 0; i < Global.MaxPlayers; i++)
                 {
                     if (AnyKey(i) && !Global.Player[i].exist)
@@ -94,7 +97,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
                         break;
                     }
                 }
-                if (Timer > MaxTime)
+                if (Timer >= MaxTime)
                 {
                     EndSelection();
                 }
