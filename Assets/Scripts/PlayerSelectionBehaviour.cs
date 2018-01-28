@@ -168,6 +168,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
             if (SelectionPlayer[_index].Timer > TimeToConfirm)
             {
                 Global.Player[_index].exist = true;
+                SoundManager.Instance.PlaySomeAudio("Ready");
                 Debug.Log("Player " + _index.ToString() + " Pronto");
                 yield break;
             }

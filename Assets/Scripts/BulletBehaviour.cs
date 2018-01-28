@@ -37,9 +37,11 @@ public class BulletBehaviour : MonoBehaviour
     private float _distanceToChildrenBullets = 0.25f;
 
     [Header("Death Start")]
+    [SerializeField] private Material _initialMaterial;
     [SerializeField] private Material _deathStarMaterial;
     [SerializeField] private GameObject _deathStarParticle;
     [SerializeField] private MeshRenderer _bulletMeshRenderer;
+    [SerializeField] private GameObject _canPickParticle;
 
     private float _initialY;
 
@@ -51,6 +53,7 @@ public class BulletBehaviour : MonoBehaviour
     public void Fire(float distance, int ownerId)
     {
         _initialY = transform.position.y;
+        _initialMaterial = _bulletMeshRenderer.material;
 
         StartCoroutine(FireCo(distance));
         _ownerId = ownerId;
@@ -99,8 +102,13 @@ public class BulletBehaviour : MonoBehaviour
             _bulletMeshRenderer.materials = new Material[]{ _bulletMeshRenderer.material, _deathStarMaterial };
 
             Debug.LogWarning("NOW WE ARE A DEATH START");
-            //Invoke("AbsolveDeathStart", 7f);
+            Invoke("AbsolveDeathStart", 5f);
         }
+    }
+
+    private void AbsolveDeathStart()
+    {
+        BulletStop();
     }
 
     private void CheckAndKillPlayer(Collider col)
@@ -126,6 +134,10 @@ public class BulletBehaviour : MonoBehaviour
 
     private void BulletStop()
     {
+        _canPickParticle.SetActive(true);
+        _bulletMeshRenderer.material = _initialMaterial;
+        _deathStarParticle.SetActive(false);
+
         _moving = false;
         SetCanBePicked(true);
 

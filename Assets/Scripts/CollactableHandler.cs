@@ -36,6 +36,7 @@ public class CollactableHandler : MonoBehaviour
     [SerializeField] private ParticleSystem _respawnParticle;
 
     [SerializeField] private AcessorieChooser _acessories;
+    [SerializeField] private Vector3 _initialPos;
 
     // Use this for initialization
     void Start()
@@ -49,6 +50,9 @@ public class CollactableHandler : MonoBehaviour
         _respawnParticle.Clear();
         _respawnParticle.Play();
         _acessories.Pick();
+
+        _initialPos = transform.position;
+        SoundManager.Instance.PlaySomeAudio("Respawn");
     }
 
     // Update is called once per frame
@@ -68,6 +72,11 @@ public class CollactableHandler : MonoBehaviour
             else if (bulletCB.CanBePicked() == false)
                 KillPlayer();
         }
+
+        if (other.gameObject.CompareTag("Limiter"))
+        {
+            transform.position = _initialPos;
+        }
     }
 
     private void CollectEnergy(BulletBehaviour bulletCB)
@@ -75,6 +84,7 @@ public class CollactableHandler : MonoBehaviour
         Debug.Log("EnergyCollected");
         _energyHandler.RecieveSomeEnergy(bulletCB.GetEnergyAmount());
         Destroy(bulletCB.gameObject);
+        SoundManager.Instance.PlaySomeAudio("Pick");
     }
 
     public void KillPlayer()

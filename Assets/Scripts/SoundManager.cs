@@ -24,9 +24,9 @@ public class SoundManager : MonoBehaviour {
 
     public void PlaySomeAudio(string clipName)
     {
-        AudioClip clipToPlay = _soundListData.GetSomeClip(clipName);
+        AudioClip clipToPlay = _soundListData.GetSomeClip(clipName).ClipList[Random.Range(0, _soundListData.GetSomeClip(clipName).ClipList.Count)]; ;
 
-        if (!clipToPlay)
-            _myAudioSource.PlayOneShot(clipToPlay);
+        if (clipToPlay)
+            _myAudioSource.PlayOneShot(clipToPlay, _soundListData.GetSomeClip(clipName).Volume);
     }
 }

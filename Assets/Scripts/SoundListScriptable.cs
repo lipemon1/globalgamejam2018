@@ -11,17 +11,13 @@ public class SoundListScriptable : ScriptableObject {
     {
         public string Name;
         public List<AudioClip> ClipList = new List<AudioClip>();
+        public float Volume = 1f;
     }
 
     [SerializeField] private List<AudioItem> _soundsList = new List<AudioItem>();
 
-    public AudioClip GetSomeClip(string clipName)
+    public AudioItem GetSomeClip(string clipName)
     {
-        AudioItem itemToGet = _soundsList.Where(sound => sound.Name == clipName).ToList().FirstOrDefault();
-
-        if (itemToGet == null || itemToGet.ClipList.Count == 0)
-            return null;
-
-        return itemToGet.ClipList[Random.Range(0, itemToGet.ClipList.Count)];
+        return _soundsList.Where(sound => sound.Name == clipName).ToList().FirstOrDefault();        
     }
 }

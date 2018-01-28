@@ -13,18 +13,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundsList:
   - Name: Dash
-    ClipList: []
+    ClipList:
+    - {fileID: 8300000, guid: 85abc487c98cf974d9d79c6605a27b11, type: 3}
+    - {fileID: 8300000, guid: 62e34437cbd1f3b4b9c4dce94331ab9c, type: 3}
+    - {fileID: 8300000, guid: b1ba7317147f13e478f75823e26e79c4, type: 3}
+    - {fileID: 8300000, guid: bedd0da9cc2856f40b3e024cf87fe3b0, type: 3}
+    - {fileID: 8300000, guid: 769cb5b5da06dc141ba3963fd3e4c5ad, type: 3}
+    Volume: 2
   - Name: Shoot
-    ClipList: []
+    ClipList:
+    - {fileID: 8300000, guid: 0c7b0e8c57dca364d9b5951d7ef21017, type: 3}
+    - {fileID: 8300000, guid: a92fcea07383bcc42bc70850ce58e46c, type: 3}
+    - {fileID: 8300000, guid: 3bce360dbe8cf1b46bb47d9efed183b0, type: 3}
+    - {fileID: 8300000, guid: 3f811051effa9f042ba278ae0fd90925, type: 3}
+    - {fileID: 8300000, guid: e94d88a8be295c14698302ba803075b8, type: 3}
+    - {fileID: 8300000, guid: 6cda4b85a5efc3341a1bfaf056dfe02c, type: 3}
+    Volume: 3
   - Name: Death
-    ClipList: []
+    ClipList:
+    - {fileID: 8300000, guid: dc2986520ad71d34294cbc85d7753755, type: 3}
+    - {fileID: 8300000, guid: 9e33f16fd4c308b4091e6b5eb63441b3, type: 3}
+    - {fileID: 8300000, guid: 17c9ed6fe33144143bf09eb3ccd2f2a6, type: 3}
+    - {fileID: 8300000, guid: b50c1503aa139424db1146671c55df14, type: 3}
+    - {fileID: 8300000, guid: 273f1b14481da784cb9221d755f7b5f5, type: 3}
+    - {fileID: 8300000, guid: 87d1f3c88a6c2d047a53d03eb54161f5, type: 3}
+    - {fileID: 8300000, guid: 314a068f7e2e706469bfd3990a9f9837, type: 3}
+    - {fileID: 8300000, guid: 04a7707bd47362048881d5417366a8b0, type: 3}
+    - {fileID: 8300000, guid: 86754e9bf9336834f85dbc5aaa07c792, type: 3}
+    - {fileID: 8300000, guid: da67b6d52433c4344a5d6f154f72de24, type: 3}
+    - {fileID: 8300000, guid: 86d678f01b8f9fc45891564ee19f2754, type: 3}
+    - {fileID: 8300000, guid: 61185bf498713e74fb5af290fbc481c8, type: 3}
+    - {fileID: 8300000, guid: 6dbdf22ba4f42fb49a791167c58455f1, type: 3}
+    - {fileID: 8300000, guid: 27913d9db642e0f4a8c4c8f8be533956, type: 3}
+    - {fileID: 8300000, guid: ef33e986ffd71df449bf272cd0dea84b, type: 3}
+    Volume: 15
   - Name: ShieldHit
-    ClipList: []
+    ClipList:
+    - {fileID: 8300000, guid: 703c1e9d542f7b840a83a44dfcb0ed27, type: 3}
+    - {fileID: 8300000, guid: 166cd43f018fdd84fa1b6f15ade24655, type: 3}
+    - {fileID: 8300000, guid: 83b1801a5ae3fce4aa39348e30c22a24, type: 3}
+    - {fileID: 8300000, guid: 9610cc9cc369026458de9a7a10b41077, type: 3}
+    - {fileID: 8300000, guid: 65d2a04a3b33aa743a60aedd0c2fdf93, type: 3}
+    Volume: 15
   - Name: Respawn
-    ClipList: []
-  - Name: ReadySound
-    ClipList: []
+    ClipList:
+    - {fileID: 8300000, guid: 9f070c84542a96c478811e3cfb0b9935, type: 3}
+    - {fileID: 8300000, guid: 74fdbf0dd6a419f4ab3f45a7c3200b80, type: 3}
+    - {fileID: 8300000, guid: 46d9ac68ec37a2d4dabc640b494d8c99, type: 3}
+    - {fileID: 8300000, guid: 007f1c4bc5255764c86c74838cabe5d2, type: 3}
+    - {fileID: 8300000, guid: c9f122a49886c7b4aa15515e69202598, type: 3}
+    - {fileID: 8300000, guid: b611a97a4da00534a9be4d51a791df08, type: 3}
+    Volume: 15
+  - Name: Ready
+    ClipList:
+    - {fileID: 8300000, guid: a02804914ae0b02478c42d20805f21d4, type: 3}
+    - {fileID: 8300000, guid: 252071f4d4363b24b8eb6c27ea8b3122, type: 3}
+    - {fileID: 8300000, guid: 3052ead61d538a24ebdee01d6ca3e2b7, type: 3}
+    - {fileID: 8300000, guid: 4b94489100db9e4458841414788ef83c, type: 3}
+    - {fileID: 8300000, guid: 3383dbdb62883a5449a2624023c15057, type: 3}
+    - {fileID: 8300000, guid: 2e433babcac15d24ba2d013602974d5a, type: 3}
+    Volume: 15
   - Name: ColisaoJogador
     ClipList: []
+    Volume: 1
   - Name: Charging
-    ClipList: []
+    ClipList:
+    - {fileID: 8300000, guid: 12836e060900f7f4089da078f3a5b066, type: 3}
+    Volume: 15
+  - Name: Pick
+    ClipList:
+    - {fileID: 8300000, guid: a73267dd2b02e13489cd8d9c7c6013e0, type: 3}
+    - {fileID: 8300000, guid: 5a805e394e893734ba5f97e6c78dd240, type: 3}
+    - {fileID: 8300000, guid: 8f05c7c0820b22d4dbd5b1f9ef036493, type: 3}
+    - {fileID: 8300000, guid: 4460a6600c7d5c74fb6a0f39d9e3d395, type: 3}
+    - {fileID: 8300000, guid: 8814b5db372bbfc42b5c20092e486f63, type: 3}
+    Volume: 3.5
