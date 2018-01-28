@@ -3032,7 +3032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c4834c87afca6458d10672ca649724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRecieveDamage: 0
+  _canRecieveDamage: 1
   _canShoot: 0
   _shieldIsOn: 0
   _holdingShot: 0

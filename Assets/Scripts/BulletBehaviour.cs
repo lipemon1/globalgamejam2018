@@ -19,6 +19,8 @@ public class BulletBehaviour : MonoBehaviour
     [Header("Energy Amount")]
     [SerializeField]
     private int _energyAmount;
+    [SerializeField]
+    private ParticleSystem ChargeParticle;
 
     [Header("Bullet")]
     [SerializeField]
@@ -52,6 +54,8 @@ public class BulletBehaviour : MonoBehaviour
             else
             {
                 transform.Translate(direction * _currentSpeed * Time.deltaTime, Space.World);
+                //Rigidbody rb = GetComponent<Rigidbody>();
+                //rb.velocity = (_currentSpeed * direction * Time.deltaTime + transform.position) - transform.position;
             }
             yield return null;
         }
@@ -97,5 +101,11 @@ public class BulletBehaviour : MonoBehaviour
 
     public int GetEnergyAmount() { return _energyAmount; }
 
-    public void SetEnergyAmount(int amount) { _energyAmount = amount; }
+    public void SetEnergyAmount(int amount)
+    {
+        _energyAmount = amount;
+#pragma warning disable CS0618 // O tipo ou membro é obsoleto
+        ChargeParticle.startSize = amount / 5f;
+#pragma warning restore CS0618 // O tipo ou membro é obsoleto
+    }
 }
