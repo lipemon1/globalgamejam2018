@@ -393,12 +393,12 @@ MonoBehaviour:
   _energyAmount: 0
   ChargeParticle: {fileID: 198247217051654806}
   _bulletPrefab: {fileID: 1817350575218722}
-  _distanceToChildrenBullets: 3
-  _initialMaterial: {fileID: 0}
-  _deathStarMaterial: {fileID: 2100000, guid: ef40e97b8e4503d40a17487f29977d4c, type: 2}
+  _distanceToChildrenBullets: 1.5
+  _shieldMaterial: {fileID: 2100000, guid: e39cdaacfd5fc1e4dbaee7b1006028bd, type: 2}
+  _shieldMaterialBad: {fileID: 2100000, guid: a94fe902911648f4ea8fd86c202808ad, type: 2}
   _deathStarParticle: {fileID: 1600649256763678, guid: 67bcf96c7eea56c41b4ceba3a8fccc3e,
     type: 2}
-  _bulletMeshRenderer: {fileID: 23815559837848800}
+  _bulletMeshRenderer: {fileID: 23394120117915218}
   _canPickParticle: {fileID: 1762545625866174}
 --- !u!135 &135485088421235594
 SphereCollider:

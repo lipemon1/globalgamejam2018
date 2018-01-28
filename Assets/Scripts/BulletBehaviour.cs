@@ -37,39 +37,41 @@ public class BulletBehaviour : MonoBehaviour
     private float _distanceToChildrenBullets = 0.25f;
 
     [Header("Death Start")]
-    [SerializeField] private Material _initialMaterial;
-    [SerializeField] private Material _deathStarMaterial;
+    [SerializeField] private Material _shieldMaterial;
+    [SerializeField] private Material _shieldMaterialBad;
     [SerializeField] private GameObject _deathStarParticle;
     [SerializeField] private MeshRenderer _bulletMeshRenderer;
     [SerializeField] private GameObject _canPickParticle;
 
     private float _initialY;
 
-    private void LateUpdate()
-    {
-        transform.position = new Vector3(transform.position.x, _initialY, transform.position.z);
-    }
+    //private void LateUpdate()
+    //{
+    //    transform.position = new Vector3(transform.position.x, _initialY, transform.position.z);
+    //}
 
     public void Fire(float distance, int ownerId)
     {
         _initialY = transform.position.y;
-        _initialMaterial = _bulletMeshRenderer.material;
+        _ownerId = ownerId;
 
         StartCoroutine(FireCo(distance));
-        _ownerId = ownerId;
-    }
+    }   
 
     public IEnumerator FireCo(float distance)
     {
         _moving = true;
-        Invoke("TryToBecameADeathStart", 1.5f);
+        //Invoke("TryToBecameADeathStart", 1.5f);
+        float timer = 0;
 
         Vector3 direction = transform.forward;
         float a = -Mathf.Pow(_startSpeed, 2) / 2 / distance;
+        _bulletMeshRenderer.material = _shieldMaterialBad;
 
         _currentSpeed = _startSpeed;
-        while (_currentSpeed > 0)
+        while (_currentSpeed > 0 && timer < 1.5f)
         {
+            timer += Time.deltaTime;
             _currentSpeed += a * Time.deltaTime;
             Vector3 destinationPosition = transform.position + direction * _currentSpeed * Time.deltaTime;
             RaycastHit hit;
@@ -86,6 +88,7 @@ public class BulletBehaviour : MonoBehaviour
                 //Rigidbody rb = GetComponent<Rigidbody>();
                 //rb.velocity = (_currentSpeed * direction * Time.deltaTime + transform.position) - transform.position;
             }
+            transform.position = new Vector3(transform.position.x, _initialY, transform.position.z);
             yield return null;
         }
         
@@ -99,7 +102,7 @@ public class BulletBehaviour : MonoBehaviour
         {
             //TO DO HERE
             _deathStarParticle.gameObject.SetActive(true);
-            _bulletMeshRenderer.materials = new Material[]{ _bulletMeshRenderer.material, _deathStarMaterial };
+            _bulletMeshRenderer.materials = new Material[]{ _bulletMeshRenderer.material, _shieldMaterialBad };
 
             Debug.LogWarning("NOW WE ARE A DEATH START");
             Invoke("AbsolveDeathStart", 5f);
@@ -135,7 +138,7 @@ public class BulletBehaviour : MonoBehaviour
     private void BulletStop()
     {
         _canPickParticle.SetActive(true);
-        _bulletMeshRenderer.material = _initialMaterial;
+        _bulletMeshRenderer.material = _shieldMaterial;
         _deathStarParticle.SetActive(false);
 
         _moving = false;
@@ -147,9 +150,11 @@ public class BulletBehaviour : MonoBehaviour
 
     private void SpawnNewBullets(int energyAmount)
     {
+        float yRot = Random.Range(0, 360);
+
         for (int i = 0; i < energyAmount; i++)
         {
-            GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.Euler(GetRandomDirection()));
+            GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.Euler(new Vector3(0, yRot + 360 / (i + 1), 0)));
             BulletBehaviour bulletBehaviour = newBullet.GetComponent<BulletBehaviour>();
             bulletBehaviour.SetEnergyAmount(1);
             bulletBehaviour.Fire(_distanceToChildrenBullets, _ownerId);
@@ -170,7 +175,7 @@ public class BulletBehaviour : MonoBehaviour
     public void SetCanBePicked(bool value)
     {
         _canBePicked = value;
-        transform.localScale *= 1.5f;
+        //transform.localScale *= 1.5f;
     }
 
     public int GetEnergyAmount() { return _energyAmount; }
