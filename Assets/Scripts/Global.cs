@@ -84,7 +84,12 @@ public static class Global {
 
     public static void AddKill(int playerIndex)
     {
-        //play
+        GetMyPlayer(playerIndex).kills++;
+    }
+
+    public static void AddDeath(int playerIndex)
+    {
+        GetMyPlayer(playerIndex).deaths++;
     }
 
     private static PlayerInfo GetMyPlayer(int playerIndex)

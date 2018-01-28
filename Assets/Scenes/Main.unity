@@ -1329,6 +1329,7 @@ MonoBehaviour:
   _finalMessage: Terminando...
   _currentDeathTickets: 0
   _deathTicketsForMatch: 20
+  _playersScore: []
 --- !u!4 &1280413789
 Transform:
   m_ObjectHideFlags: 0

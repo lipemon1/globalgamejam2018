@@ -57,6 +57,7 @@ public class CollactableHandler : MonoBehaviour {
 
     public void KillPlayer()
     {
+        Global.AddDeath((int)_playerController.Index);
         _playerCollider.enabled = false;
         _charachterController.enabled = false;
 

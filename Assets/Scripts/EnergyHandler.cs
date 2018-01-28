@@ -33,7 +33,9 @@ public class EnergyHandler : MonoBehaviour {
     [SerializeField] private PlayerData _playerData;
 
     [Header("Player Animator")]
-    [SerializeField] private PlayerAnimController _playerAnimController;
+    [HideInInspector] private PlayerAnimController _playerAnimController;
+
+    [HideInInspector] private Player _playerController;
 
     private void Awake()
     {
@@ -147,7 +149,7 @@ public class EnergyHandler : MonoBehaviour {
         _bulletDistance = Mathf.Lerp(_minBulletDistance, _maxBulletDistance, Mathf.InverseLerp(0, _maxForceToShoot, holdTime));
 
         BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
-        bulletBehaviour.Fire(_bulletDistance);
+        bulletBehaviour.Fire(_bulletDistance, (int)_playerController.Index);
 
         _playerAnimController.Shoot();
 

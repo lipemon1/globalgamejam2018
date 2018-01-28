@@ -17,6 +17,7 @@ public class BulletBehaviour : MonoBehaviour
     [Header("Debug")]
     [SerializeField]
     private bool _canBePicked;
+    [SerializeField] private int _ownerId = -1;
 
     [Header("Energy Amount")]
     [SerializeField]
@@ -31,9 +32,10 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private float _distanceToChildrenBullets = 0.25f;
 
-    public void Fire(float distance)
+    public void Fire(float distance, int ownerId)
     {
         StartCoroutine(FireCo(distance));
+        _ownerId = ownerId;
     }
 
     public IEnumerator FireCo(float distance)
@@ -74,6 +76,7 @@ public class BulletBehaviour : MonoBehaviour
             if(collactableHandler != null)
             {
                 collactableHandler.KillPlayer();
+                Global.AddKill(_ownerId);
             }
         }
     }
@@ -93,7 +96,7 @@ public class BulletBehaviour : MonoBehaviour
             GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.Euler(GetRandomDirection()));
             BulletBehaviour bulletBehaviour = newBullet.GetComponent<BulletBehaviour>();
             bulletBehaviour.SetEnergyAmount(1);
-            bulletBehaviour.Fire(_distanceToChildrenBullets);
+            bulletBehaviour.Fire(_distanceToChildrenBullets, _ownerId);
             newBullet.transform.localScale = Vector3.one;
         }
         SetEnergyAmount(1);
