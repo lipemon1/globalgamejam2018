@@ -3988,8 +3988,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 0
   _playerCanControl: 0
-  MovSpeed: 10
-  RotSlerpSpeed: 36
+  MovSpeed: 7
+  RotSlerpSpeed: 24
   ColoredRenderers:
   - {fileID: 137027235853705906}
   DashAnimationCurve:

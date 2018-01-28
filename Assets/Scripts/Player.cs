@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
 
     private void HandleRotation(Vector2 stick)
     {
+	if(stick.magnitude > 0.1f)
         transform.forward = Vector3.Slerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * RotSlerpSpeed);
     }
 

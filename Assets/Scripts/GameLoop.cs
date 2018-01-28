@@ -156,6 +156,7 @@ public class GameLoop : MonoBehaviour
         foreach (PlayerScore playerScore in _playersScore)
         {
             playerScore.ScoreText.text = ScoreValue(playerScore.Kills, playerScore.Deaths).ToString() + " PONTOS";
+            //playerScore.ScoreText.text = playerScore.Kills.ToString() + " Kills - " +  playerScore.Deaths.ToString() + " Deaths";
             playerScore.Panel.SetActive(true);
         }
 
@@ -172,7 +173,7 @@ public class GameLoop : MonoBehaviour
 
     private int ScoreValue(int kills, int death)
     {
-        int killsPoints = kills * 3;
+        int killsPoints = kills * 10;
         int deathPoints = death * -1;
 
         return killsPoints + deathPoints;
@@ -245,7 +246,7 @@ public class GameLoop : MonoBehaviour
 
     private bool GameIsEnded()
     {
-        return (_currentDeathTickets == 0);
+        return (_currentDeathTickets <= 0);
     }
 
     // Returns a string message to display at the end of each round.
