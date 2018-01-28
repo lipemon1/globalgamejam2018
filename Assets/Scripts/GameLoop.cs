@@ -146,7 +146,7 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Blinker = Global.Player[i].Instance.gameObject.GetComponent<Blinker>();
 
-                foreach (var rend in Global.Player[i].Instance.GetComponentsInChildren<Renderer>())
+                foreach (var rend in Global.Player[i].Instance.ColoredRenderers)
                 {
                     rend.material = _playerMaterials[i];
                 }

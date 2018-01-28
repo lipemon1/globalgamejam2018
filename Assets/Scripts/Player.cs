@@ -19,9 +19,14 @@ public class Player : MonoBehaviour
     [Header("Rotation Settings")]
     public float RotSlerpSpeed = 12;
 
+    [Header("Rendering Settings")]
+    public Renderer[] ColoredRenderers;
 
     [Header("Dash Settings")]
     public AnimationCurve DashAnimationCurve;
+
+    [Header("Animator Controller")]
+    [SerializeField] private PlayerAnimController _playerAnimController;
 
     public float DashCooldown
     {
@@ -53,6 +58,7 @@ public class Player : MonoBehaviour
     {
         Instance = this;
         _energyHandler = GetComponent<EnergyHandler>();
+        _playerAnimController = GetComponent<PlayerAnimController>();
     }
 
     private void Start()
@@ -77,6 +83,7 @@ public class Player : MonoBehaviour
     private void HandleMovement(Vector2 stick)
     {
         _characterController.Move(new Vector3(stick.x, 0, stick.y) * MovSpeed * Time.deltaTime);
+        _playerAnimController.UpdateMoveAnimations(stick.magnitude);
     }
 
     private void HandleRotation(Vector2 stick)

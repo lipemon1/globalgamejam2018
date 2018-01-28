@@ -5,7 +5,12 @@ using UnityEngine;
 public class PlayerAnimController : MonoBehaviour {
 
     [Header("Player Anim")]
-    [SerializeField] private Animator _playerAnim;
+    [HideInInspector] private Animator _playerAnim;
+
+    private void Awake()
+    {
+        _playerAnim = GetComponentInChildren<Animator>();
+    }
 
     public void UpdateMoveAnimations(float walking)
     {
@@ -17,18 +22,21 @@ public class PlayerAnimController : MonoBehaviour {
         _playerAnim.SetFloat("ChargingAmount", chargingAmount);
     }
 
-    public void DeathAnimation()
+    private void DeathAnimation()
     {
         _playerAnim.SetInteger("Death", Random.Range(0,3));
     }
 
-    public void IsDead()
+    [ContextMenu("Die")]
+    public void Die()
     {
+        DeathAnimation();
         _playerAnim.SetTrigger("IsDead");
     }
 
     public void Shoot()
     {
+        UpdateChargingValue(0f);
         _playerAnim.SetTrigger("Shoot");
     }
 

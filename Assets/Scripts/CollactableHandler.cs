@@ -14,10 +14,14 @@ public class CollactableHandler : MonoBehaviour {
     [HideInInspector] private EnergyHandler _energyHandler;
     [HideInInspector] private Player _playerController;
 
+    [Header("Player Animatino")]
+    [SerializeField] private PlayerAnimController _playerAnimController;
+
     // Use this for initialization
     void Start () {
         _energyHandler = GetComponent<EnergyHandler>();
         _playerController = GetComponent<Player>();
+        _playerAnimController = GetComponent<PlayerAnimController>();
     }
 	
 	// Update is called once per frame
@@ -47,11 +51,11 @@ public class CollactableHandler : MonoBehaviour {
 
     private void KillPlayer()
     {
+        _playerAnimController.Die();
         Global.StartKillingSomePlayer((int)_playerController.Index);
-        Invoke("Respawn", 2f);
     }
 
-    private void Respawn()
+    public void Respawn()
     {
         Global.RespawnSomePlayer((int)_playerController.Index);
     }
