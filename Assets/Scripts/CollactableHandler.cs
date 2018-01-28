@@ -35,6 +35,8 @@ public class CollactableHandler : MonoBehaviour
     private ParticleSystem _deathParticle;
     [SerializeField] private ParticleSystem _respawnParticle;
 
+    [SerializeField] private AcessorieChooser _acessories;
+
     // Use this for initialization
     void Start()
     {
@@ -46,6 +48,7 @@ public class CollactableHandler : MonoBehaviour
 
         _respawnParticle.Clear();
         _respawnParticle.Play();
+        _acessories.Pick();
     }
 
     // Update is called once per frame
@@ -86,6 +89,7 @@ public class CollactableHandler : MonoBehaviour
 
         _deathParticle.Clear();
         _deathParticle.Play();
+        SoundManager.Instance.PlaySomeAudio("Death");
     }
 
     public void Respawn()
@@ -95,5 +99,6 @@ public class CollactableHandler : MonoBehaviour
         _charachterController.enabled = true;
         _respawnParticle.Clear();
         _respawnParticle.Play();
+        _acessories.Pick();
     }
 }

@@ -79,6 +79,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+    }
+
     #endregion
 
     private void HandleMovement(Vector2 stick)
@@ -134,6 +139,7 @@ public class Player : MonoBehaviour
             Invoke("ResetCanDash", DashCooldown);
             _dashParticle.Clear();
             _dashParticle.Play();
+            SoundManager.Instance.PlaySomeAudio("Dash");
         }
     }
 

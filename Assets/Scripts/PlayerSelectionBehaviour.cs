@@ -38,6 +38,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
     [SerializeField] private float Timer = 0;
     [SerializeField] private Image[] FillImages;
     [SerializeField] private Text TimerText;
+    private GameObject TimerHolder;
 
     private SelectionState state;
     [SerializeField] private List<SelectionPanel> SelectionPlayer;
@@ -56,6 +57,10 @@ public class PlayerSelectionBehaviour : MonoBehaviour
             SelectionPlayer.Add(new SelectionPanel());
             SelectionPlayer.Last().FillImage = FillImages[i];
         }
+        TimerHolder = TimerText.transform.parent.gameObject;
+        TimerHolder.SetActive(false);
+
+
     }
 
     private void Update()
@@ -79,6 +84,7 @@ public class PlayerSelectionBehaviour : MonoBehaviour
                         if (_first)
                         {
                             state++;
+                            TimerHolder.SetActive(true);
                             break;
                         }
                         _first = true;

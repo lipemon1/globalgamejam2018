@@ -15,12 +15,16 @@ public class GameLoop : MonoBehaviour
         public string Name = "";
         public int Kills = 0;
         public int Deaths = 0;
+        public GameObject Panel;
+        public Text ScoreText;
 
-        public PlayerScore(string name, int kills, int deaths)
+        public PlayerScore(string name, int kills, int deaths, GameObject panel)
         {
             Name = name;
             Kills = kills;
             Deaths = deaths;
+            Panel = panel;
+            ScoreText = Panel.transform.GetChild(2).GetChild(0).GetComponent<Text>();
         }
     }
 
@@ -35,8 +39,6 @@ public class GameLoop : MonoBehaviour
     [Header("General Settings")] [SerializeField] private float _startDelay = 3f;
     [SerializeField] private float _endDelay = 3f;
     [SerializeField] private Text _messageText;
-
-    [Header("Players Controllers")] [SerializeField] private List<Player> _playersControllersList = new List<Player>();
 
     [Header("Player Config")] [SerializeField] private Material[] _playerMaterials;
     [SerializeField] private GameObject _playerPrefab;
@@ -54,6 +56,8 @@ public class GameLoop : MonoBehaviour
 
     [Header("End Match Data")]
     [SerializeField] private List<PlayerScore> _playersScore = new List<PlayerScore>();
+    [SerializeField] private List<GameObject> _playerPanels = new List<GameObject>();
+    [SerializeField] private GameObject _finalCanvas;
 
     private void Awake()
     {
@@ -144,16 +148,34 @@ public class GameLoop : MonoBehaviour
         for (int i = 0; i < Global.MaxPlayers; i++)
         {
             if (Global.Player[i].exist)
-                _playersScore.Add(new PlayerScore(("Player") + (i + 1).ToString(), Global.Player[i].kills, Global.Player[i].deaths));
+            {
+                _playersScore.Add(new PlayerScore(("Player") + (i + 1).ToString(), Global.Player[i].kills, Global.Player[i].deaths, _playerPanels[i]));
+            }
         }
 
+        foreach (PlayerScore playerScore in _playersScore)
+        {
+            playerScore.ScoreText.text = ScoreValue(playerScore.Kills, playerScore.Deaths).ToString() + " PONTOS";
+            playerScore.Panel.SetActive(true);
+        }
+
+        _finalCanvas.SetActive(true);
+
         // Get a message based on the scores and whether or not there is a game winner and display it.
-        _messageText.text = _finalMessage;
+        _messageText.text = "";
 
         Global.Player.Clear();
 
         // Wait for the specified length of time until yielding control back to the game loop.
         yield return _endWait;
+    }
+
+    private int ScoreValue(int kills, int death)
+    {
+        int killsPoints = kills * 3;
+        int deathPoints = death * -1;
+
+        return killsPoints + deathPoints;
     }
 
     private void ForceManualSettingPlayers()

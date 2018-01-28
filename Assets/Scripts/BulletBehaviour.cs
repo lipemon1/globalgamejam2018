@@ -11,6 +11,10 @@ public class BulletBehaviour : MonoBehaviour
     private float _currentSpeed = 0;
     [SerializeField]
     private float _radius = 1;
+
+    [Header("Debug")]
+    [SerializeField] private bool _moving;
+
     [SerializeField]
     private string _playerTag = "Player";
 
@@ -32,14 +36,31 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private float _distanceToChildrenBullets = 0.25f;
 
+    [Header("Death Start")]
+    [SerializeField] private Material _deathStarMaterial;
+    [SerializeField] private GameObject _deathStarParticle;
+    [SerializeField] private MeshRenderer _bulletMeshRenderer;
+
+    private float _initialY;
+
+    private void LateUpdate()
+    {
+        transform.position = new Vector3(transform.position.x, _initialY, transform.position.z);
+    }
+
     public void Fire(float distance, int ownerId)
     {
+        _initialY = transform.position.y;
+
         StartCoroutine(FireCo(distance));
         _ownerId = ownerId;
     }
 
     public IEnumerator FireCo(float distance)
     {
+        _moving = true;
+        Invoke("TryToBecameADeathStart", 1.5f);
+
         Vector3 direction = transform.forward;
         float a = -Mathf.Pow(_startSpeed, 2) / 2 / distance;
 
@@ -64,8 +85,22 @@ public class BulletBehaviour : MonoBehaviour
             }
             yield return null;
         }
-
+        
         BulletStop();
+    }
+
+    [ContextMenu("DEATH START")]
+    public void TryToBecameADeathStart()
+    {
+        if(_canBePicked == false && _moving)
+        {
+            //TO DO HERE
+            _deathStarParticle.gameObject.SetActive(true);
+            _bulletMeshRenderer.materials = new Material[]{ _bulletMeshRenderer.material, _deathStarMaterial };
+
+            Debug.LogWarning("NOW WE ARE A DEATH START");
+            //Invoke("AbsolveDeathStart", 7f);
+        }
     }
 
     private void CheckAndKillPlayer(Collider col)
@@ -84,11 +119,14 @@ public class BulletBehaviour : MonoBehaviour
     private void KillPlayer(CollactableHandler collactableHandler)
     {
         collactableHandler.KillPlayer();
-        Global.AddKill(_ownerId);
+
+        if((int)collactableHandler.gameObject.GetComponent<Player>().Index != _ownerId)
+            Global.AddKill(_ownerId);
     }
 
     private void BulletStop()
     {
+        _moving = false;
         SetCanBePicked(true);
 
         if (_energyAmount > 1)

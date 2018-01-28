@@ -75,6 +75,7 @@ public class EnergyHandler : MonoBehaviour {
                 if (_shieldIsOn && damageAmount <= _playerData.GetEnergyAmount())
                 {
                     ToogleShield(false);
+                    SoundManager.Instance.PlaySomeAudio("ShieldHit");
                 }
                 else
                 {
@@ -147,6 +148,7 @@ public class EnergyHandler : MonoBehaviour {
 
     private void Shoot(GameObject bulletPrefab, float holdTime, int energyAmount)
     {
+        SoundManager.Instance.PlaySomeAudio("Shoot");
         _playerData.SetEnergyAmount(-energyAmount);
         GameObject bullet = Instantiate(bulletPrefab, _shootSpawner.transform.position, transform.rotation);
 

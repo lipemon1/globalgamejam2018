@@ -11,4 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b64475effd9f9b4bb17c325d81ccb31, type: 3}
   m_Name: SFX List
   m_EditorClassIdentifier: 
-  _soundsList: []
+  _soundsList:
+  - Name: Dash
+    ClipList: []
+  - Name: Shoot
+    ClipList: []
+  - Name: Death
+    ClipList: []
+  - Name: ShieldHit
+    ClipList: []
+  - Name: Respawn
+    ClipList: []
+  - Name: ReadySound
+    ClipList: []
+  - Name: ColisaoJogador
+    ClipList: []
+  - Name: Charging
+    ClipList: []

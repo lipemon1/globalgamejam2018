@@ -80,6 +80,8 @@ public static class Global {
         playerToRespawn.PlayerAnimationsController.Respawn();
 
         playerToRespawn.Blinker.StartBlink(() => playerToRespawn.PlayerEnergy.SetCanRecieveDamage(true));
+
+        SoundManager.Instance.PlaySomeAudio("Respawn");
     }
 
     public static void AddKill(int playerIndex)
