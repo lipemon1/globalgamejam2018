@@ -53,7 +53,7 @@ public class BulletBehaviour : MonoBehaviour
             }
             else
             {
-                transform.Translate(direction * _currentSpeed * Time.deltaTime, Space.World);
+                transform.Translate(direction * _currentSpeed * Time.deltaTime, Space.World); 
                 //Rigidbody rb = GetComponent<Rigidbody>();
                 //rb.velocity = (_currentSpeed * direction * Time.deltaTime + transform.position) - transform.position;
             }
