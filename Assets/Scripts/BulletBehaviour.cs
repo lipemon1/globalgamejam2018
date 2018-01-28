@@ -73,12 +73,18 @@ public class BulletBehaviour : MonoBehaviour
         if (col.gameObject.CompareTag(_playerTag))
         {
             CollactableHandler collactableHandler = col.gameObject.GetComponent<CollactableHandler>();
-            if(collactableHandler != null)
+            if (collactableHandler != null)
             {
-                collactableHandler.KillPlayer();
-                Global.AddKill(_ownerId);
+                EnergyHandler energyHandler = col.gameObject.GetComponent<EnergyHandler>();
+                energyHandler.TryRecieveDamage(_energyAmount, () => KillPlayer(collactableHandler));
             }
         }
+    }
+
+    private void KillPlayer(CollactableHandler collactableHandler)
+    {
+        collactableHandler.KillPlayer();
+        Global.AddKill(_ownerId);
     }
 
     private void BulletStop()

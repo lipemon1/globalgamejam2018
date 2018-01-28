@@ -62,27 +62,32 @@ public class EnergyHandler : MonoBehaviour {
     /// Tenta receber o dano da energia recebida
     /// </summary>
     /// <param name="damageAmount"></param>
-    public void TryRecieveDamage(int damageAmount)
+    public void TryRecieveDamage(int damageAmount, System.Action killPlayer)
     {
         if (_canRecieveDamage)
         {
-            if (_shieldIsOn)
+            if (damageAmount > _playerData.GetEnergyAmount())
             {
-                if (damageAmount <= _playerData.GetEnergyAmount())
+                OnDeath(killPlayer);
+            }
+            else
+            {
+                if (_shieldIsOn && damageAmount <= _playerData.GetEnergyAmount())
                 {
                     ToogleShield(false);
                 }
                 else
                 {
-                    OnDeath();
+                    OnDeath(killPlayer);
                 }
             }
         }
     }
 
-    private void OnDeath()
+    private void OnDeath(System.Action killPlayer)
     {
-
+        ToogleShield(false);
+        killPlayer();
     }
 
     public void ToogleShield(bool value)
