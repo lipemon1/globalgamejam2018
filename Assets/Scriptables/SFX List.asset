@@ -19,7 +19,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b1ba7317147f13e478f75823e26e79c4, type: 3}
     - {fileID: 8300000, guid: bedd0da9cc2856f40b3e024cf87fe3b0, type: 3}
     - {fileID: 8300000, guid: 769cb5b5da06dc141ba3963fd3e4c5ad, type: 3}
-    Volume: 2
+    Volume: 4
   - Name: Shoot
     ClipList:
     - {fileID: 8300000, guid: 0c7b0e8c57dca364d9b5951d7ef21017, type: 3}
@@ -46,7 +46,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 6dbdf22ba4f42fb49a791167c58455f1, type: 3}
     - {fileID: 8300000, guid: 27913d9db642e0f4a8c4c8f8be533956, type: 3}
     - {fileID: 8300000, guid: ef33e986ffd71df449bf272cd0dea84b, type: 3}
-    Volume: 15
+    Volume: 30
   - Name: ShieldHit
     ClipList:
     - {fileID: 8300000, guid: 703c1e9d542f7b840a83a44dfcb0ed27, type: 3}
@@ -63,7 +63,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 007f1c4bc5255764c86c74838cabe5d2, type: 3}
     - {fileID: 8300000, guid: c9f122a49886c7b4aa15515e69202598, type: 3}
     - {fileID: 8300000, guid: b611a97a4da00534a9be4d51a791df08, type: 3}
-    Volume: 15
+    Volume: 40
   - Name: Ready
     ClipList:
     - {fileID: 8300000, guid: a02804914ae0b02478c42d20805f21d4, type: 3}
@@ -72,7 +72,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 4b94489100db9e4458841414788ef83c, type: 3}
     - {fileID: 8300000, guid: 3383dbdb62883a5449a2624023c15057, type: 3}
     - {fileID: 8300000, guid: 2e433babcac15d24ba2d013602974d5a, type: 3}
-    Volume: 15
+    Volume: 35
   - Name: ColisaoJogador
     ClipList: []
     Volume: 1
@@ -87,4 +87,4 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8f05c7c0820b22d4dbd5b1f9ef036493, type: 3}
     - {fileID: 8300000, guid: 4460a6600c7d5c74fb6a0f39d9e3d395, type: 3}
     - {fileID: 8300000, guid: 8814b5db372bbfc42b5c20092e486f63, type: 3}
-    Volume: 3.5
+    Volume: 1
