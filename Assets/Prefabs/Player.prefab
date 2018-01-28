@@ -1507,7 +1507,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638863029441292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.95066404, y: 0.000013180673, z: 4.4227}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4479192698196920}
@@ -2682,7 +2682,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c7d198800f676fb43ae3dfed5146209d, type: 3}
+  - {fileID: 2100000, guid: 85653ec25d53b464683e1994734e9e93, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2945,9 +2945,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBlinking: 0
-  _target: {fileID: 1301168185327464}
-  _blinkTimes: 10
-  _delayBetweenBlinks: 0.125
+  _target:
+  - {fileID: 137247906413685364}
+  - {fileID: 137568616188304550}
+  BlinkColor: {r: 1, g: 1, b: 1, a: 1}
+  _blinkCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  _blinkSpeed: 2
+  _blinkDuration: 1.5
 --- !u!114 &114879668068190632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3131,8 +3158,8 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c7d198800f676fb43ae3dfed5146209d, type: 3}
-  - {fileID: 2100004, guid: c7d198800f676fb43ae3dfed5146209d, type: 3}
+  - {fileID: 2100000, guid: 85653ec25d53b464683e1994734e9e93, type: 2}
+  - {fileID: 2100000, guid: 85653ec25d53b464683e1994734e9e93, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
