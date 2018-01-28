@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 224767471253032100}
   - component: {fileID: 222459052365753904}
   - component: {fileID: 114297159844089806}
+  - component: {fileID: 114472766031563028}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -578,6 +579,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114472766031563028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1281816608819222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5ed2d107c06b24fbfa1c3c490f0a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Normal: {fileID: 21300000, guid: 309b5f3290688a440ad246a1bd6168a9, type: 3}
+  Blink: {fileID: 21300000, guid: 3749e7f49a2b6674eba547f69a08d485, type: 3}
+  BlinkDuration: 0.1
+  OutImage: {fileID: 114297159844089806}
+  BlinkProbabilityPerSecond: 35
 --- !u!114 &114496837082815448
 MonoBehaviour:
   m_ObjectHideFlags: 1
