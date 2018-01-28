@@ -15,6 +15,7 @@ public class EnergyHandler : MonoBehaviour {
 
     [Header("Shoot Params")]
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private ParticleSystem ChargingParticle;
     [SerializeField] private float _standardBulletVelocity = 1f;
     [SerializeField] private float _bulletDistance = 0;
     [Range(0,1)]
@@ -84,9 +85,17 @@ public class EnergyHandler : MonoBehaviour {
         _holdingShot = value;
 
         if (_bulletShootForce < _maxForceToShoot)
+        {
             _bulletShootForce = forceValue;
+#pragma warning disable CS0618 // O tipo ou membro é obsoleto
+            ChargingParticle.startSize = _bulletShootForce / 2;
+#pragma warning restore CS0618 // O tipo ou membro é obsoleto
+        }
         else
             _bulletShootForce = _maxForceToShoot;
+#pragma warning disable CS0618 // O tipo ou membro é obsoleto
+        ChargingParticle.startSize = 0.5f;
+#pragma warning restore CS0618 // O tipo ou membro é obsoleto
     }
 
     /// <summary>
@@ -127,6 +136,10 @@ public class EnergyHandler : MonoBehaviour {
 
         BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
         bulletBehaviour.Fire(_bulletDistance);
+#pragma warning disable CS0618 // O tipo ou membro é obsoleto
+        ChargingParticle.startSize = 0f;
+        ChargingParticle.Clear();
+#pragma warning restore CS0618 // O tipo ou membro é obsoleto
     }
 
     /// <summary>

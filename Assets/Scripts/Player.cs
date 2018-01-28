@@ -109,8 +109,10 @@ public class Player : MonoBehaviour
 
                 _energyHandler.ToogleShield(false);
                 _energyHandler.TryToShoot();
+                AimDuration = 0;
             }
         }
+        
     }
 
     private void HandleDash()

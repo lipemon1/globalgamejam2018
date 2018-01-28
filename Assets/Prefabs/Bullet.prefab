@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4333470515177204}
   - component: {fileID: 114167211771406112}
-  - component: {fileID: 135821316033955430}
+  - component: {fileID: 135485088421235594}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: EnergyBullet
@@ -290,14 +290,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ee5c169844e343886d86ccb4d3aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startSpeed: 500
+  _startSpeed: 50
   _currentSpeed: 0
   _radius: 1
   _canBePicked: 0
   _energyAmount: 0
   _bulletPrefab: {fileID: 1817350575218722}
   _distanceToChildrenBullets: 3
---- !u!135 &135821316033955430
+--- !u!135 &135485088421235594
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -307,5 +307,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
